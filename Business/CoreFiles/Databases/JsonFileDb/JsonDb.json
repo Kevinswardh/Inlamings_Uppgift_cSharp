@@ -1,0 +1,24 @@
+[
+  {
+    "Role": "Admin",
+    "UserType": "Administrator",
+    "Id": "9c8291fe-fe8f-43fb-b4e9-b3aa267447f1",
+    "Name": "kevin",
+    "Lastname": "swärdh",
+    "Fullname": "kevin swärdh",
+    "Email": "e@e.ee",
+    "Contacts": [],
+    "Favorites": []
+  },
+  {
+    "Role": "Default",
+    "UserType": "Standard User",
+    "Id": "7c909c2e-943a-4fd5-a1fa-3ff816c1d82f",
+    "Name": "pelle",
+    "Lastname": "plutt",
+    "Fullname": "pelle plutt",
+    "Email": "k@e.ee",
+    "Contacts": [],
+    "Favorites": []
+  }
+]

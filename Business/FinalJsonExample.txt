@@ -1,0 +1,36 @@
+﻿[
+  {
+    "id": "Guid generated",
+    "Name": "name",
+    "Lastname": "lastname",
+    "Fullname": "name lastname",
+    "Email": "email@email.com",
+    "Password": "Hashed password",
+    "Contacts": [
+      {
+        "id": "contactId",
+        "Name": "contactName",
+        "Lastname": "contactLastname",
+        "Fullname": "contactName contactLastname",
+        "PhoneNumber": "contactPhoneNumber",
+        "Address": "contactAddress",
+        "Email": "contactEmail@example.com",
+        "Notes": "contactNotes"
+      }
+    ],
+    "Favorites": [
+      {
+        "id": "favoriteContactId",
+        "Name": "favoriteName",
+        "Lastname": "favoriteLastname",
+        "Fullname": "favoriteName favoriteLastname",
+        "PhoneNumber": "favoritePhoneNumber",
+        "Address": "favoriteAddress",
+        "Email": "favoriteEmail@example.com",
+        "Notes": "favoriteNotes"
+      }
+    ],
+    "Role": "Role",
+    "UserTypes": "UserType"
+  }
+]

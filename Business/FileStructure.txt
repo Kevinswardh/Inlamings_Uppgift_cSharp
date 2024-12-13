@@ -1,0 +1,44 @@
+﻿Business/
+│
+├── CoreFiles/
+│   ├── CrudOperations/
+│   │   ├── ICreate.cs
+│   │   ├── IRead.cs
+│   │   ├── IUpdate.cs
+│   │   └── IDelete.cs
+│   │
+│   ├── Events/
+│   │   └── UserEvents.cs
+│   │
+│   ├── Factory/
+│   │   ├── ContactCreate.cs
+│   │   └── UserCreate.cs
+│   │
+│   ├── Helpers/
+│   │   └── SomeHelper.cs
+│   │
+│   └── Models/
+│       ├── Contacts/
+│       │   ├── Contacts.cs
+│       │   └── Favorites.cs
+│       │
+│       └── Users/
+│           ├── Roles/
+│           │   └── Admin.cs
+│           ├── Default.cs
+│           └── BaseUser.cs
+│
+└── Logic/
+    ├── Services/
+    │   ├── ContactService.cs
+    │   └── UserService.cs
+    │
+    └── Repositories/
+        ├── ContactRepository/
+        │   └── ContactRepository.cs
+        │
+        ├── JsonRepository/
+        │   └── JsonRepository.cs
+        │
+        └── UserRepository/
+            └── UserRepository.cs
