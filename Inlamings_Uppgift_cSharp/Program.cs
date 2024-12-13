@@ -4,6 +4,9 @@ using Business.Interfaces.IUser;
 using Business.CoreFiles.Factory;
 using Business.Logic._2_Repositories;
 using Business.Services;
+using static System.Runtime.InteropServices.JavaScript.JSType;
+using System.Text.RegularExpressions;
+using System.Xml.Linq;
 
 namespace ConsoleApp
 {
@@ -74,20 +77,76 @@ namespace ConsoleApp
             Console.Clear();
             Console.WriteLine("Skapa en ny användare");
 
-            Console.Write("Förnamn: ");
-            string name = Console.ReadLine();
+            string name;
+            bool valid;
+            // Förnamn
+            do
+            {
+                Console.Write("Förnamn: ");
+                name = Console.ReadLine();
+                valid = !string.IsNullOrWhiteSpace(name) && name.Length <= 50 && Regex.IsMatch(name, @"^[\p{L}\s'-]+$");
+                if (!valid)
+                    Console.WriteLine("Förnamn är ogiltigt. Det kan inte vara tomt och måste vara mellan 2 och 50 tecken långt.");
+            } while (!valid);
 
-            Console.Write("Efternamn: ");
-            string lastname = Console.ReadLine();
+            string lastname;
 
-            Console.Write("Email: ");
-            string email = Console.ReadLine();
+            // Efternamn
+            do
+            {
+                Console.Write("Efternamn: ");
+                lastname = Console.ReadLine();
 
-            Console.Write("Lösenord: ");
-            string password = Console.ReadLine();
+                valid = !string.IsNullOrWhiteSpace(lastname) && lastname.Length <= 50 && Regex.IsMatch(lastname, @"^[\p{L}\s'-]+$");
 
-            Console.Write("Roll (Admin/Default): ");
-            string role = Console.ReadLine();
+                if (!valid)
+                    Console.WriteLine("Efternamn är ogiltigt. Det kan inte vara tomt och måste vara mellan 2 och 50 tecken långt.");
+            } while (!valid);
+
+            string email;
+
+            // Email
+            do
+            {
+                Console.Write("Email: ");
+                email = Console.ReadLine();
+
+                valid = !string.IsNullOrWhiteSpace(email) && Regex.IsMatch(email, @"^[^@\s]+@[^@\s]+\.[^@\s]{2,}$");
+
+                if (!valid)
+                    Console.WriteLine("Ogiltig e-postadress. Kontrollera att den är korrekt.");
+            } while (!valid);
+
+            string password;
+
+            // Lösenord
+            do
+            {
+                Console.Write("Lösenord: ");
+                password = Console.ReadLine();
+
+                valid = !string.IsNullOrWhiteSpace(password) && password.Length >= 6; // Exempel på minimum längd
+
+                if (!valid)
+                    Console.WriteLine("Lösenordet måste vara minst 6 tecken långt.");
+            } while (!valid);
+
+            string role;
+
+            // Roll (Admin/Default)
+            do
+            {
+                Console.Write("Roll (Admin/Default): ");
+                role = Console.ReadLine()?.Trim();  // Trimma eventuella extra mellanslag från input
+
+                // Gör hela strängen till gemener och konvertera den första bokstaven till versal
+                role = role.Substring(0, 1).ToUpper() + role.Substring(1).ToLower();
+
+                valid = role == "Admin" || role == "Default";  // Kontrollera om rollen är "Admin" eller "Default"
+
+                if (!valid)
+                    Console.WriteLine("Ogiltig roll. Vänligen skriv 'Admin' eller 'Default'.");
+            } while (!valid);
 
             userService.CreateUser(name, lastname, email, password, role);
 

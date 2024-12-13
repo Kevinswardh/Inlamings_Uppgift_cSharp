@@ -20,5 +20,49 @@
     "Email": "k@e.ee",
     "Contacts": [],
     "Favorites": []
+  },
+  {
+    "Role": "Default",
+    "UserType": "Standard User",
+    "Id": "d6641918-0658-40df-9dc3-54d630f1bef7",
+    "Name": "bajs tolle",
+    "Lastname": "diaree",
+    "Fullname": "bajs tolle diaree",
+    "Email": "sprutlakeraren@yahoo.com",
+    "Contacts": [],
+    "Favorites": []
+  },
+  {
+    "Role": "Default",
+    "UserType": "Standard User",
+    "Id": "4a0b7303-48f5-4ae7-a56b-bb01b1f41a69",
+    "Name": "",
+    "Lastname": "",
+    "Fullname": " ",
+    "Email": "",
+    "Contacts": [],
+    "Favorites": []
+  },
+  {
+    "Role": "Default",
+    "UserType": "Standard User",
+    "Id": "c9a9b7b9-1fff-458f-8b87-8d3ce74b814a",
+    "Name": "keke",
+    "Lastname": "pepe",
+    "Fullname": "keke pepe",
+    "Email": "epl",
+    "Contacts": [],
+    "Favorites": []
+  },
+  {
+    "Role": "Default",
+    "UserType": "Standard User",
+    "Id": "3da9ebd6-ab67-46a7-9a27-4a49a0da46ab",
+    "Name": "Pelle",
+    "Lastname": "ka",
+    "Fullname": "Pelle ka",
+    "Email": "e@e.ee",
+    "Contacts": [],
+    "Favorites": []
   }
 ]
