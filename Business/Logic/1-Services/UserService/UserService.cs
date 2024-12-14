@@ -32,6 +32,15 @@ namespace Business.Services
         }
 
         /// <summary>
+        /// Skapar en användare med fullständiga detaljer inklusive kontakter och favoriter.
+        /// </summary>
+        public void CreateUser(BaseUser user)
+        {
+            // Spara användaren med alla detaljer
+            _userRepository.SaveUser(user);
+        }
+
+        /// <summary>
         /// Hämtar en användare från datalagret baserat på användar-ID.
         /// </summary>
         public BaseUser ReadUser(string userId)
@@ -65,5 +74,10 @@ namespace Business.Services
             return _userRepository.GetAllUsers();  // Anropa metod i UserRepository för att hämta alla användare
         }
 
+        //Method for ExampleUser
+        public void EnsureExampleUserExists()
+        {
+            _userRepository.EnsureExampleUserExists();
+        }
     }
 }

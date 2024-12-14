@@ -71,5 +71,11 @@ namespace Business.Logic._2_Repositories
         {
             return _jsonRepository.ReadAll<BaseUser>();  // Använd ReadAll för att hämta alla användare
         }
+
+        // Checkar Exmaple user
+        public void EnsureExampleUserExists()
+        {
+            _jsonRepository.EnsureExampleUserExists();
+        }
     }
 }

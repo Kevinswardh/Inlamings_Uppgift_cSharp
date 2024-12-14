@@ -1,68 +1,68 @@
 [
   {
+    "Role": "Default",
+    "UserType": "Standard User",
+    "Id": "7780c2f6-10f8-4eaf-8702-7dc85ef25aec",
+    "Name": "ExampleName",
+    "Lastname": "ExampleLastname",
+    "Fullname": "ExampleName ExampleLastname",
+    "Email": "x@x.xx",
+    "Contacts": [
+      {
+        "Id": 1,
+        "Name": "John",
+        "Lastname": "Doe",
+        "Fullname": "John Doe",
+        "PhoneNumber": "+1234567890",
+        "Address": "123 Main Street",
+        "Email": "johndoe@example.com",
+        "Notes": "Work contact"
+      },
+      {
+        "Id": 2,
+        "Name": "Jane",
+        "Lastname": "Smith",
+        "Fullname": "Jane Smith",
+        "PhoneNumber": "+0987654321",
+        "Address": "456 Elm Street",
+        "Email": "janesmith@example.com",
+        "Notes": "Friend"
+      }
+    ],
+    "Favorites": [
+      {
+        "Favorite": "Favorite",
+        "Id": 1,
+        "Name": "Alice",
+        "Lastname": "Johnson",
+        "Fullname": "Alice Johnson",
+        "PhoneNumber": "+1112233445",
+        "Address": "789 Maple Avenue",
+        "Email": "alicejohnson@example.com",
+        "Notes": "Family member"
+      }
+    ]
+  },
+  {
     "Role": "Admin",
     "UserType": "Administrator",
-    "Id": "9c8291fe-fe8f-43fb-b4e9-b3aa267447f1",
-    "Name": "kevin",
-    "Lastname": "swärdh",
-    "Fullname": "kevin swärdh",
+    "Id": "4400fd67-ac96-427e-962b-52647e15bec2",
+    "Name": "Kevin",
+    "Lastname": "Swärdh",
+    "Fullname": "Kevin Swärdh",
     "Email": "e@e.ee",
-    "Contacts": [],
-    "Favorites": []
-  },
-  {
-    "Role": "Default",
-    "UserType": "Standard User",
-    "Id": "7c909c2e-943a-4fd5-a1fa-3ff816c1d82f",
-    "Name": "pelle",
-    "Lastname": "plutt",
-    "Fullname": "pelle plutt",
-    "Email": "k@e.ee",
-    "Contacts": [],
-    "Favorites": []
-  },
-  {
-    "Role": "Default",
-    "UserType": "Standard User",
-    "Id": "d6641918-0658-40df-9dc3-54d630f1bef7",
-    "Name": "bajs tolle",
-    "Lastname": "diaree",
-    "Fullname": "bajs tolle diaree",
-    "Email": "sprutlakeraren@yahoo.com",
-    "Contacts": [],
-    "Favorites": []
-  },
-  {
-    "Role": "Default",
-    "UserType": "Standard User",
-    "Id": "4a0b7303-48f5-4ae7-a56b-bb01b1f41a69",
-    "Name": "",
-    "Lastname": "",
-    "Fullname": " ",
-    "Email": "",
-    "Contacts": [],
-    "Favorites": []
-  },
-  {
-    "Role": "Default",
-    "UserType": "Standard User",
-    "Id": "c9a9b7b9-1fff-458f-8b87-8d3ce74b814a",
-    "Name": "keke",
-    "Lastname": "pepe",
-    "Fullname": "keke pepe",
-    "Email": "epl",
-    "Contacts": [],
-    "Favorites": []
-  },
-  {
-    "Role": "Default",
-    "UserType": "Standard User",
-    "Id": "3da9ebd6-ab67-46a7-9a27-4a49a0da46ab",
-    "Name": "Pelle",
-    "Lastname": "ka",
-    "Fullname": "Pelle ka",
-    "Email": "e@e.ee",
-    "Contacts": [],
+    "Contacts": [
+      {
+        "Id": 0,
+        "Name": "NalinX",
+        "Lastname": "Bokelund",
+        "Fullname": "NalinX Bokelund",
+        "PhoneNumber": "0733764336",
+        "Address": "Axgatan 47",
+        "Email": null,
+        "Notes": null
+      }
+    ],
     "Favorites": []
   }
 ]

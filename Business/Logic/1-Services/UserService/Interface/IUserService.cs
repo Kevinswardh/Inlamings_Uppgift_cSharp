@@ -1,4 +1,5 @@
 ﻿using Business.CoreFiles.Models.Users;
+using Business.Logic._2_Repositories;
 
 namespace Business.Interfaces.IUser
 {
@@ -8,6 +9,11 @@ namespace Business.Interfaces.IUser
         /// Skapar en användare och hashar lösenordet innan användaren sparas.
         /// </summary>
         void CreateUser(string name, string lastname, string email, string password, string role);
+
+        /// <summary>
+        /// Skapar en användare baserat på hela BaseUser objektet, används till example user, Overload.
+        /// </summary>
+        void CreateUser(BaseUser user);
 
         /// <summary>
         /// Hämtar en användare från datalagret baserat på användar-ID.
@@ -33,5 +39,11 @@ namespace Business.Interfaces.IUser
         /// Hämtar alla användare.
         /// </summary>
         List<BaseUser> ReadAllUsers();
+
+        /// <summary>
+        /// Skapar Exempel användare.
+        /// </summary>
+        void EnsureExampleUserExists();
+      
     }
 }

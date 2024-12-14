@@ -10,5 +10,8 @@ namespace Business.Interfaces.IUser
         BaseUser GetUserByEmail(string email);  // Ny metod för att hämta användare via email
 
         List<BaseUser> GetAllUsers();
+
+        //Example user
+        void EnsureExampleUserExists();
     }
 }
