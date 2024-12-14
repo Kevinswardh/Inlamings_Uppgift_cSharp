@@ -1,4 +1,5 @@
-﻿using Business.CoreFiles.Models.Users;
+﻿using Business._2_Repositories.JsonRepository.Interface;
+using Business.CoreFiles.Models.Users;
 using Business.Interfaces.IUser;
 using System;
 using System.Collections.Generic;
@@ -11,9 +12,9 @@ namespace Business.Logic._2_Repositories
         private readonly JsonRepository _jsonRepository;
 
         // Konstruktor som tar emot JsonRepository via Dependency Injection
-        public UserRepository(JsonRepository jsonRepository)
+        public UserRepository(IJsonRepository jsonRepository)
         {
-            _jsonRepository = jsonRepository;  // Sätt JsonRepository via DI
+            _jsonRepository = (JsonRepository)jsonRepository;
         }
 
         /// <summary>

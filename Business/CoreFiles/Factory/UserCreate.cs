@@ -1,11 +1,14 @@
 ﻿using Business.CoreFiles.Models.Users;
 using Business.CoreFiles.Models.Users.Roles;
 using Business.CoreFiles.Helpers;
-using Business.CoreFiles.Models.Contacts;  // Import the GuidGenerator helper
+using Business.CoreFiles.Models.Contacts;
+using Business.CoreFiles.Factory.Interfaces;  // Import the GuidGenerator helper
 
 namespace Business.CoreFiles.Factory
 {
-    public class UserCreate
+
+    //Inte static pga instansiering inuti frabriken.
+    public class UserCreate : IUserCreate
     {
         /// <summary>
         /// Skapar en ny användare och sätter lösenordet.

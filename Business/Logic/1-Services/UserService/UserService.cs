@@ -2,16 +2,17 @@
 using Business.Interfaces.IUser;
 using Business.CoreFiles.Factory;  // Import the UserCreate factory
 using System;
+using Business.CoreFiles.Factory.Interfaces;
 
 namespace Business.Services
 {
     public class UserService : IUserService
     {
         private readonly IUserRepository _userRepository;
-        private readonly UserCreate _userCreateFactory;  // Inject the factory
+        private readonly IUserCreate _userCreateFactory;  // Inject the factory / Interface istället
 
         // Constructor to inject the repository and factory
-        public UserService(IUserRepository userRepository, UserCreate userCreateFactory)
+        public UserService(IUserRepository userRepository, IUserCreate userCreateFactory)
         {
             _userRepository = userRepository;
             _userCreateFactory = userCreateFactory;

@@ -9,10 +9,11 @@ using System.Xml;
 using Business.CoreFiles.Models.Users.Roles;
 using Newtonsoft.Json.Linq;
 using Business.Interfaces.IUser;
+using Business._2_Repositories.JsonRepository.Interface;
 
 namespace Business.Logic._2_Repositories
 {
-    public class JsonRepository : ICreate<BaseUser>, IRead<BaseUser>, IUpdate<BaseUser>, IDelete<BaseUser>
+    public class JsonRepository : IJsonRepository, ICreate<BaseUser>, IRead<BaseUser>, IUpdate<BaseUser>, IDelete<BaseUser>
     {
         private readonly string _filePath;
 

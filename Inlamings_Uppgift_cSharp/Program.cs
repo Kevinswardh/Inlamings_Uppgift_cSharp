@@ -1,12 +1,15 @@
 ﻿using System;
 using Business.CoreFiles.Models.Users;
-using Business.Interfaces.IUser;
 using Business.CoreFiles.Factory;
+using Business.CoreFiles.Factory.Interfaces;
 using Business.Logic._2_Repositories;
 using Business.Services;
 using static System.Runtime.InteropServices.JavaScript.JSType;
 using System.Text.RegularExpressions;
 using System.Xml.Linq;
+using Business._2_Repositories.JsonRepository.Interface;
+using Microsoft.Extensions.DependencyInjection;
+using Business.Interfaces.IUser;
 
 namespace ConsoleApp
 {
@@ -15,11 +18,27 @@ namespace ConsoleApp
         private static readonly string _filePath = Path.Combine(Directory.GetCurrentDirectory(), @"..\..\..\..\Business\CoreFiles\Databases\JsonFileDb\JsonDb.json");
         static void Main(string[] args)
         {
-            // Här kan du ange sökvägen till din JSON-fil
-            var jsonRepository = new JsonRepository(_filePath);
-            var userRepository = new UserRepository(jsonRepository);
-            var userCreateFactory = new UserCreate();
-            var userService = new UserService(userRepository, userCreateFactory);
+            // Skapa en service collection för att registrera tjänster
+            var services = new ServiceCollection();
+
+            // Registrera JsonRepository som Singleton
+            services.AddSingleton<IJsonRepository>(provider => new JsonRepository(_filePath));
+
+            // Registrera UserRepository som Scoped (för konsolapplikationer innebär det en ny instans per scope)
+            services.AddScoped<IUserRepository, UserRepository>();
+
+            // Registrera UserCreate som Transient (ny instans varje gång)
+            services.AddTransient<IUserCreate, UserCreate>();
+
+            // Registrera UserService som Transient
+            services.AddTransient<UserService>();
+
+            // Bygg service provider
+            var serviceProvider = services.BuildServiceProvider();
+
+            // Hämta UserService från DI-container
+            var userService = serviceProvider.GetService<UserService>();
+
 
             // Huvudmeny
             MainMenu(userService);
