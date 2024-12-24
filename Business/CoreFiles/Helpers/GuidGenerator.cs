@@ -6,12 +6,18 @@ using System.Threading.Tasks;
 
 namespace Business.CoreFiles.Helpers
 {
+    /// <summary>
+    /// En hjälpklass för att generera unika identifierare (GUID).
+    /// </summary>
     public static class GuidGenerator
     {
-        // Generates a new GUID for the user
+        /// <summary>
+        /// Genererar ett nytt unikt identifierar (GUID) som en sträng.
+        /// </summary>
+        /// <returns>En strängrepresentation av ett nytt GUID.</returns>
         public static string GenerateGuid()
         {
-            return Guid.NewGuid().ToString();  // Generate a new GUID and convert it to string
+            return Guid.NewGuid().ToString();  // Genererar ett nytt GUID och konverterar det till en sträng.
         }
     }
 }

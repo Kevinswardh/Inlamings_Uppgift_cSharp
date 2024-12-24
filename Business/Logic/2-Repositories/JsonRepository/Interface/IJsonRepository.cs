@@ -3,21 +3,40 @@ using System.Collections.Generic;
 
 namespace Business._2_Repositories.JsonRepository.Interface
 {
+    /// <summary>
+    /// Interface för att hantera CRUD-operationer för användare i JSON-datalagret.
+    /// </summary>
     public interface IJsonRepository
     {
-        // Method to create a new user
+        /// <summary>
+        /// Skapar en ny användare i datalagret.
+        /// </summary>
+        /// <param name="user">Den nya användaren som ska skapas.</param>
         void Create(BaseUser user);
 
-        // Method to read a user by ID
+        /// <summary>
+        /// Hämtar en användare från datalagret baserat på användarens ID.
+        /// </summary>
+        /// <param name="id">Den unika identifieraren för användaren.</param>
+        /// <returns>Användaren som matchar det angivna ID:t, eller null om ingen användare hittas.</returns>
         BaseUser Get(string id);
 
-        // Method to get all users
+        /// <summary>
+        /// Hämtar alla användare från datalagret.
+        /// </summary>
+        /// <returns>En lista med alla användare.</returns>
         List<BaseUser> GetAll();
 
-        // Method to update an existing user
+        /// <summary>
+        /// Uppdaterar en befintlig användares information i datalagret.
+        /// </summary>
+        /// <param name="user">Användaren med uppdaterad information.</param>
         void Update(BaseUser user);
 
-        // Method to delete a user by ID
+        /// <summary>
+        /// Tar bort en användare från datalagret baserat på användarens ID.
+        /// </summary>
+        /// <param name="id">Den unika identifieraren för användaren som ska tas bort.</param>
         void Delete(string id);
     }
 }

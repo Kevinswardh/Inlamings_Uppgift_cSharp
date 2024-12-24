@@ -7,19 +7,26 @@ using System.Linq;
 
 namespace Business.Logic._2_Repositories
 {
+    /// <summary>
+    /// Repository för att hantera användare i en JSON-fil.
+    /// </summary>
     public class UserRepository : IUserRepository
     {
         private readonly JsonRepository _jsonRepository;
 
-        // Konstruktor som tar emot JsonRepository via Dependency Injection
+        /// <summary>
+        /// Konstruktor som tar emot en instans av JsonRepository via Dependency Injection.
+        /// </summary>
+        /// <param name="jsonRepository">Instans av IJsonRepository för att läsa och skriva användardata.</param>
         public UserRepository(IJsonRepository jsonRepository)
         {
             _jsonRepository = (JsonRepository)jsonRepository;
         }
 
         /// <summary>
-        /// Sparar användaren i JSON-filen.
+        /// Sparar en användare i JSON-filen. Om användaren redan finns, uppdateras den.
         /// </summary>
+        /// <param name="user">Användaren som ska sparas.</param>
         public void SaveUser(BaseUser user)
         {
             var users = _jsonRepository.ReadAll<BaseUser>();
@@ -38,6 +45,8 @@ namespace Business.Logic._2_Repositories
         /// <summary>
         /// Hämtar en användare baserat på användar-ID från JSON-filen.
         /// </summary>
+        /// <param name="userId">Användarens unika ID.</param>
+        /// <returns>Den användare som matchar det angivna ID:t.</returns>
         public BaseUser GetUser(string userId)
         {
             var users = _jsonRepository.ReadAll<BaseUser>();
@@ -45,8 +54,9 @@ namespace Business.Logic._2_Repositories
         }
 
         /// <summary>
-        /// Tar bort en användare från JSON-filen.
+        /// Tar bort en specifik användare från JSON-filen.
         /// </summary>
+        /// <param name="user">Användaren som ska tas bort.</param>
         public void DeleteUser(BaseUser user)
         {
             var users = _jsonRepository.ReadAll<BaseUser>();
@@ -60,19 +70,29 @@ namespace Business.Logic._2_Repositories
         }
 
         /// <summary>
-        /// Hämtar en användare baserat på email från JSON-filen.
+        /// Hämtar en användare baserat på e-postadress från JSON-filen.
         /// </summary>
+        /// <param name="email">Användarens e-postadress.</param>
+        /// <returns>Den användare som matchar den angivna e-postadressen.</returns>
         public BaseUser GetUserByEmail(string email)
         {
             var users = _jsonRepository.ReadAll<BaseUser>();
             return users.FirstOrDefault(u => u.Email == email);
         }
+
+        /// <summary>
+        /// Hämtar alla användare från JSON-filen.
+        /// </summary>
+        /// <returns>En lista med alla användare.</returns>
         public List<BaseUser> GetAllUsers()
         {
-            return _jsonRepository.ReadAll<BaseUser>();  // Använd ReadAll för att hämta alla användare
+            return _jsonRepository.ReadAll<BaseUser>();
         }
 
-        // Checkar Exmaple user
+        /// <summary>
+        /// Säkerställer att en exempelanvändare finns i JSON-filen.
+        /// Om exempelanvändaren inte finns, skapas en ny.
+        /// </summary>
         public void EnsureExampleUserExists()
         {
             _jsonRepository.EnsureExampleUserExists();

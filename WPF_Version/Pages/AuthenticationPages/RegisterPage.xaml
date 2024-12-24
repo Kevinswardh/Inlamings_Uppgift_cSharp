@@ -1,0 +1,93 @@
+﻿<Page x:Class="WPF_Version.Pages.AuthenticationPages.RegisterPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      Title="RegisterPage">
+    <Grid Background="#1f1f1f" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="0,0,0,20">
+        <!-- Vertikal layout för innehåll -->
+        <StackPanel VerticalAlignment="Center" HorizontalAlignment="Center" Width="300">
+            <!-- Rubrik -->
+            <TextBlock Text="Register Page"
+                       Foreground="White"
+                       FontSize="28"
+                       HorizontalAlignment="Center"
+                       Margin="0,0,0,20" />
+
+            <!-- Name -->
+            <StackPanel Margin="0,0,0,10">
+                <TextBlock Text="Name"
+                           Foreground="White"
+                           FontSize="16"
+                           Margin="0,0,0,5" />
+                <TextBox Name="NameTextBox"
+                         Height="30"
+                         FontSize="14" />
+                <TextBlock Name="NameErrorText" Foreground="Red" FontSize="12" Visibility="Collapsed" />
+            </StackPanel>
+
+            <!-- Lastname -->
+            <StackPanel Margin="0,0,0,10">
+                <TextBlock Text="Lastname"
+                           Foreground="White"
+                           FontSize="16"
+                           Margin="0,0,0,5" />
+                <TextBox Name="LastnameTextBox"
+                         Height="30"
+                         FontSize="14" />
+                <TextBlock Name="LastnameErrorText" Foreground="Red" FontSize="12" Visibility="Collapsed" />
+            </StackPanel>
+
+            <!-- Email -->
+            <StackPanel Margin="0,0,0,10">
+                <TextBlock Text="Email"
+                           Foreground="White"
+                           FontSize="16"
+                           Margin="0,0,0,5" />
+                <TextBox Name="EmailTextBox"
+                         Height="30"
+                         FontSize="14" />
+                <TextBlock Name="EmailErrorText" Foreground="Red" FontSize="12" Visibility="Collapsed" />
+            </StackPanel>
+
+            <!-- Password -->
+            <StackPanel Margin="0,0,0,10">
+                <TextBlock Text="Password"
+                           Foreground="White"
+                           FontSize="16"
+                           Margin="0,0,0,5" />
+                <PasswordBox Name="PasswordBox"
+                             Height="30"
+                             FontSize="14" />
+                <TextBlock Name="PasswordErrorText" Foreground="Red" FontSize="12" Visibility="Collapsed" />
+            </StackPanel>
+
+            <!-- Role -->
+            <StackPanel Margin="0,0,0,20">
+                <TextBlock Text="Role"
+               Foreground="White"
+               FontSize="16"
+               Margin="0,0,0,5" />
+                <ComboBox Name="RoleComboBox"
+              Height="30"
+              FontSize="14"
+              Foreground="Black"
+              SelectedIndex="-1">
+                    <ComboBoxItem Content="Admin" />
+                    <ComboBoxItem Content="Default" />
+                </ComboBox>
+                <TextBlock Name="RoleErrorText" Foreground="Red" FontSize="12" Visibility="Collapsed" />
+            </StackPanel>
+            <!-- Knappar -->
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                <Button Content="Create"
+                        Width="100"
+                        Height="40"
+                        Margin="0,0,10,0"
+                        Click="CreateButton_Click" />
+                <Button Content="Back"
+                        Width="100"
+                        Height="40"
+                        Click="BackButton_Click" />
+            </StackPanel>
+        </StackPanel>
+    </Grid>
+</Page>

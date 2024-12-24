@@ -2,14 +2,15 @@
   {
     "Role": "Default",
     "UserType": "Standard User",
-    "Id": "7780c2f6-10f8-4eaf-8702-7dc85ef25aec",
+    "Id": "5d5423b4-76f1-4f90-9453-503ce4eb717b",
     "Name": "ExampleName",
     "Lastname": "ExampleLastname",
     "Fullname": "ExampleName ExampleLastname",
     "Email": "x@x.xx",
+    "Password": "jZae727K08KaOmKSgOaGzww/XVqGr/PKEgIMkjrcbJI=",
     "Contacts": [
       {
-        "Id": 1,
+        "Id": "1",
         "Name": "John",
         "Lastname": "Doe",
         "Fullname": "John Doe",
@@ -19,7 +20,7 @@
         "Notes": "Work contact"
       },
       {
-        "Id": 2,
+        "Id": "2",
         "Name": "Jane",
         "Lastname": "Smith",
         "Fullname": "Jane Smith",
@@ -32,7 +33,7 @@
     "Favorites": [
       {
         "Favorite": "Favorite",
-        "Id": 1,
+        "Id": "1",
         "Name": "Alice",
         "Lastname": "Johnson",
         "Fullname": "Alice Johnson",
@@ -46,21 +47,66 @@
   {
     "Role": "Admin",
     "UserType": "Administrator",
-    "Id": "4400fd67-ac96-427e-962b-52647e15bec2",
-    "Name": "Kevin",
-    "Lastname": "Swärdh",
-    "Fullname": "Kevin Swärdh",
-    "Email": "e@e.ee",
+    "Id": "9c7644a1-22af-4e61-9a42-2e0528d21a2a",
+    "Name": "keke",
+    "Lastname": "keke",
+    "Fullname": "keke keke",
+    "Email": "keke@keke.keke",
+    "Password": "jZae727K08KaOmKSgOaGzww/XVqGr/PKEgIMkjrcbJI=",
+    "Contacts": [],
+    "Favorites": []
+  },
+  {
+    "Role": "Admin",
+    "UserType": "Administrator",
+    "Id": "4cc17d04-1b1b-451d-9977-7436e5b8cd8a",
+    "Name": "kevin",
+    "Lastname": "swärdh",
+    "Fullname": "kevin swärdh",
+    "Email": "kevin@swärdh.po",
+    "Password": "jZae727K08KaOmKSgOaGzww/XVqGr/PKEgIMkjrcbJI=",
+    "Contacts": [],
+    "Favorites": []
+  },
+  {
+    "Role": "Admin",
+    "UserType": "Administrator",
+    "Id": "f6683b2f-a871-4249-81cd-ff8355c0159d",
+    "Name": "koko",
+    "Lastname": "koko",
+    "Fullname": "koko koko",
+    "Email": "koko@koko.koko",
+    "Password": "jZae727K08KaOmKSgOaGzww/XVqGr/PKEgIMkjrcbJI=",
     "Contacts": [
       {
-        "Id": 0,
-        "Name": "NalinX",
-        "Lastname": "Bokelund",
-        "Fullname": "NalinX Bokelund",
-        "PhoneNumber": "0733764336",
+        "Id": "e13e88ca-2b0e-4d9f-b82f-394cf3d076a5",
+        "Name": "kevin",
+        "Lastname": "swe",
+        "Fullname": "kevin swe",
+        "PhoneNumber": "90222",
+        "Address": "1123123",
+        "Email": "13r4e13r31r31",
+        "Notes": "Notes"
+      },
+      {
+        "Id": "2a2eb151-41d2-4947-a8d9-6398fc2ceafd",
+        "Name": "Malin",
+        "Lastname": "bokelund",
+        "Fullname": "Malin bokelund",
+        "PhoneNumber": "07564378",
         "Address": "Axgatan 47",
-        "Email": null,
-        "Notes": null
+        "Email": "tviulum@yahoo.se",
+        "Notes": "Flickvän"
+      },
+      {
+        "Id": "2815f640-3445-41a9-97bd-2c0c369329fe",
+        "Name": "patrik",
+        "Lastname": "peroni",
+        "Fullname": "patrik peroni",
+        "PhoneNumber": "022223344",
+        "Address": "axgatan 47",
+        "Email": "email@email.com",
+        "Notes": "Email notes"
       }
     ],
     "Favorites": []

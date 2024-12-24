@@ -1,0 +1,54 @@
+﻿<Page x:Class="WPF_Version.Pages.AuthenticationPages.LoginPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      Title="LoginPage">
+    <Grid Background="#1f1f1f" VerticalAlignment="Center" HorizontalAlignment="Center">
+        <!-- Vertikal layout för innehåll -->
+        <StackPanel VerticalAlignment="Center" HorizontalAlignment="Center" Width="300">
+            <!-- Text -->
+            <TextBlock Text="Login Page"
+                       Foreground="White"
+                       FontSize="28"
+                       HorizontalAlignment="Center"
+                       Margin="0,0,0,20" />
+
+            <!-- Email -->
+            <StackPanel Margin="0,0,0,10">
+                <TextBlock Text="Email"
+               Foreground="White"
+               FontSize="16"
+               Margin="0,0,0,5" />
+                <TextBox Name="EmailTextBox"
+             Height="30"
+             FontSize="14" />
+                <TextBlock Name="EmailErrorText" Foreground="Red" FontSize="12" Visibility="Collapsed" />
+            </StackPanel>
+
+            <!-- Password -->
+            <StackPanel Margin="0,0,0,20">
+                <TextBlock Text="Password"
+               Foreground="White"
+               FontSize="16"
+               Margin="0,0,0,5" />
+                <PasswordBox Name="PasswordBox"
+                 Height="30"
+                 FontSize="14" />
+                <TextBlock Name="PasswordErrorText" Foreground="Red" FontSize="12" Visibility="Collapsed" />
+            </StackPanel>
+
+
+            <!-- Knappar -->
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                <Button Content="Login"
+                        Width="100"
+                        Height="40"
+                        Margin="0,0,10,0"
+                        Click="LoginButton_Click" />
+                <Button Content="Back"
+                        Width="100"
+                        Height="40"
+                        Click="BackButton_Click" />
+            </StackPanel>
+        </StackPanel>
+    </Grid>
+</Page>

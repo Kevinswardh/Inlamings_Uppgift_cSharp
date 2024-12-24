@@ -15,44 +15,54 @@ using Business.CoreFiles.Factory.Interfaces;
 
 namespace Business.Logic._2_Repositories
 {
+    /// <summary>
+    /// Klass för att hantera CRUD-operationer för användare i en JSON-fil.
+    /// Implementerar gränssnitt för skapande, läsning, uppdatering och borttagning.
+    /// </summary>
     public class JsonRepository : IJsonRepository, ICreate<BaseUser>, IRead<BaseUser>, IUpdate<BaseUser>, IDelete<BaseUser>
     {
         private readonly string _filePath;
         private readonly IExampleUserCreate _exampleUserCreate;
-        // Konstruktor som tar emot filvägen via Dependency Injection
+
+        /// <summary>
+        /// Konstruktor som tar emot filvägen och en instans av IExampleUserCreate via Dependency Injection.
+        /// </summary>
+        /// <param name="filePath">Sökvägen till JSON-filen.</param>
+        /// <param name="exampleUserCreate">Fabrik för att skapa en exempelanvändare.</param>
         public JsonRepository(string filePath, IExampleUserCreate exampleUserCreate)
         {
             _filePath = filePath;
             _exampleUserCreate = exampleUserCreate;
         }
 
-        // Läser alla objekt från JSON-filen
+        /// <summary>
+        /// Läser alla objekt från JSON-filen.
+        /// </summary>
+        /// <typeparam name="T">Typen av objekt som ska läsas.</typeparam>
+        /// <returns>En lista med objekt av typen T.</returns>
         public List<T> ReadAll<T>() where T : class
         {
             if (!File.Exists(_filePath))
             {
-                return new List<T>();  // Return an empty list if the file doesn't exist
+                return new List<T>();  // Returnera en tom lista om filen inte finns.
             }
 
-            var jsonData = File.ReadAllText(_filePath);  // Read the entire file as a string
+            var jsonData = File.ReadAllText(_filePath);  // Läs hela filen som en sträng.
 
-            // Check if the file is empty or contains only whitespace
             if (string.IsNullOrWhiteSpace(jsonData))
             {
-                return new List<T>();
+                return new List<T>();  // Returnera en tom lista om filen är tom.
             }
 
             var jsonArray = JsonConvert.DeserializeObject<List<JObject>>(jsonData);
 
-            // Check if deserialization resulted in null
             if (jsonArray == null)
             {
-                return new List<T>();
+                return new List<T>();  // Returnera en tom lista om deserialisering misslyckas.
             }
 
             List<T> users = new List<T>();
 
-            // Iterate through each item and determine the role
             foreach (var item in jsonArray)
             {
                 string role = item["Role"]?.ToString();
@@ -76,76 +86,52 @@ namespace Business.Logic._2_Repositories
             return users;
         }
 
-
-
-
-
-        /*   public BaseUser ReadUserById(string userId)
-           {
-               if (!File.Exists(_filePath))
-               {
-                   return null;  // Om filen inte finns, returnera null
-               }
-
-               var jsonData = File.ReadAllText(_filePath);  // Läs hela filen som en sträng
-               var jsonArray = JsonConvert.DeserializeObject<List<JObject>>(jsonData);  // Läs data som en lista av JObject för att kunna manipulera den
-
-               // Gå igenom alla objekt och avgör om det ska vara en Admin eller DefaultUser
-               foreach (var item in jsonArray)
-               {
-                   var id = item["Id"]?.ToString();  // Hämta Id från JSON-objektet
-
-                   if (id == userId)  // Jämför med det givna userId
-                   {
-                       string role = item["Role"]?.ToString();  // Hämta roll från JSON-objektet
-                       BaseUser user = null;
-
-                       if (role == "Admin")
-                       {
-                           user = item.ToObject<Admin>();  // Deserialisera till Admin om rollen är Admin
-                       }
-                       else if (role == "Default")
-                       {
-                           user = item.ToObject<DefaultUser>();  // Annars deserialisera till DefaultUser
-                       }
-
-                       return user;  // Returnera användaren som matchar ID:t
-                   }
-               }
-
-               return null;  // Om ingen användare matchar, returnera null
-           }
-        */
-
-        // Skriver alla objekt till JSON-filen
+        /// <summary>
+        /// Skriver alla objekt till JSON-filen.
+        /// </summary>
+        /// <typeparam name="T">Typen av objekt som ska skrivas.</typeparam>
+        /// <param name="data">Listan med objekt som ska skrivas till filen.</param>
         public void WriteAll<T>(List<T> data)
         {
-            var jsonData = JsonConvert.SerializeObject(data, Newtonsoft.Json.Formatting.Indented);  // Explicitly specify Newtonsoft.Json.Formatting
-            File.WriteAllText(_filePath, jsonData);  // Skriv data till filen
+            var jsonData = JsonConvert.SerializeObject(data, Newtonsoft.Json.Formatting.Indented);
+            File.WriteAllText(_filePath, jsonData);
         }
 
-
-        // ICreate implementation
+        /// <summary>
+        /// Skapar en ny användare och sparar den i JSON-filen.
+        /// </summary>
+        /// <param name="user">Användaren som ska skapas.</param>
         public void Create(BaseUser user)
         {
             var users = ReadAll<BaseUser>();
-            users.Add(user);  // Add the new user
-            WriteAll(users);  // Write back all users to the file
+            users.Add(user);
+            WriteAll(users);
         }
-   
 
+        /// <summary>
+        /// Hämtar en användare baserat på användarens ID.
+        /// </summary>
+        /// <param name="id">Användarens ID.</param>
+        /// <returns>Användaren med det angivna ID:t.</returns>
         public BaseUser Get(string id)
         {
             var users = ReadAll<BaseUser>();
-            return users.FirstOrDefault(u => u.Id == id); 
+            return users.FirstOrDefault(u => u.Id == id);
         }
 
+        /// <summary>
+        /// Hämtar alla användare från JSON-filen.
+        /// </summary>
+        /// <returns>En lista med alla användare.</returns>
         public List<BaseUser> GetAll()
         {
             return ReadAll<BaseUser>();
         }
 
-  
+        /// <summary>
+        /// Uppdaterar en befintlig användare.
+        /// </summary>
+        /// <param name="user">Användaren med uppdaterad information.</param>
         public void Update(BaseUser user)
         {
             var users = ReadAll<BaseUser>();
@@ -153,14 +139,16 @@ namespace Business.Logic._2_Repositories
 
             if (existingUser != null)
             {
-                
                 users.Remove(existingUser);
                 users.Add(user);
-                WriteAll(users);  
+                WriteAll(users);
             }
         }
 
-    
+        /// <summary>
+        /// Tar bort en användare baserat på användarens ID.
+        /// </summary>
+        /// <param name="id">Användarens ID som ska tas bort.</param>
         public void Delete(string id)
         {
             var users = ReadAll<BaseUser>();
@@ -168,23 +156,29 @@ namespace Business.Logic._2_Repositories
 
             if (userToRemove != null)
             {
-                users.Remove(userToRemove); 
-                WriteAll(users);  
+                users.Remove(userToRemove);
+                WriteAll(users);
             }
         }
 
+        /// <summary>
+        /// Hämtar en användare baserat på e-postadress.
+        /// </summary>
+        /// <param name="email">Användarens e-postadress.</param>
+        /// <returns>Användaren med den angivna e-postadressen.</returns>
         public BaseUser GetUserByEmail(string email)
         {
-            var users = ReadAll<BaseUser>();  
-            return users.FirstOrDefault(u => u.Email.ToLower() == email.ToLower()); 
+            var users = ReadAll<BaseUser>();
+            return users.FirstOrDefault(u => u.Email.ToLower() == email.ToLower());
         }
 
-
         //
-        //CONTACT
+        // KONTAKTHANTERING
         //
 
-        // Läser alla kontakter för en specifik användare
+        /// <summary>
+        /// Läser alla kontakter för en specifik användare.
+        /// </summary>
         public List<Contact> ReadContactsForUser(string userId)
         {
             var users = ReadAll<BaseUser>();
@@ -192,55 +186,54 @@ namespace Business.Logic._2_Repositories
             return user?.Contacts ?? new List<Contact>();
         }
 
-        // Skriver uppdaterade kontakter för en specifik användare
+        /// <summary>
+        /// Skriver uppdaterade kontakter för en specifik användare.
+        /// </summary>
         public void WriteContactsForUser(string userId, List<Contact> contacts)
         {
-            var users = ReadAll<BaseUser>();
-            var user = users.FirstOrDefault(u => u.Id == userId);
-
+            var user = Get(userId);
             if (user != null)
             {
                 user.Contacts = contacts;
-                WriteAll(users);
+                Update(user);
             }
         }
-        // Läser alla favoriter för en specifik användare
+
+        /// <summary>
+        /// Läser alla favoriter för en specifik användare.
+        /// </summary>
         public List<FavoriteContact> ReadFavoritesForUser(string userId)
         {
-            var users = ReadAll<BaseUser>();
-            var user = users.FirstOrDefault(u => u.Id == userId);
+            var user = Get(userId);
             return user?.Favorites ?? new List<FavoriteContact>();
         }
 
-        // Skriver uppdaterade favoriter för en specifik användare
+        /// <summary>
+        /// Skriver uppdaterade favoriter för en specifik användare.
+        /// </summary>
         public void WriteFavoritesForUser(string userId, List<FavoriteContact> favorites)
         {
-            var users = ReadAll<BaseUser>();
-            var user = users.FirstOrDefault(u => u.Id == userId);
-
+            var user = Get(userId);
             if (user != null)
             {
                 user.Favorites = favorites;
-                WriteAll(users);
+                Update(user);
             }
         }
 
-        //
-        //ExampleUser
-        //
+        /// <summary>
+        /// Säkerställer att en exempelanvändare finns i JSON-filen.
+        /// </summary>
         public void EnsureExampleUserExists()
         {
             var users = ReadAll<BaseUser>();
 
-            // Kontrollera om ExampleUser redan finns
             if (!users.Any(u => u.Email == "x@x.xx"))
             {
                 var exampleUser = _exampleUserCreate.CreateExampleUser();
-                users.Insert(0, exampleUser); // Lägg till ExampleUser högst upp i listan
+                users.Insert(0, exampleUser);
                 WriteAll(users);
             }
         }
-
-
     }
 }

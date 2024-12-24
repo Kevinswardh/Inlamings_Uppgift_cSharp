@@ -2,7 +2,6 @@
 using Business.Services;
 using Business.CoreFiles.Models.Users;
 using Microsoft.Extensions.DependencyInjection;
-using ConsoleApp;
 using System.Text.RegularExpressions;
 
 namespace ConsoleApp
@@ -10,6 +9,10 @@ namespace ConsoleApp
     public static class UserMenu
     {
         private static BaseUser _loggedInUser = null;
+
+        /// <summary>
+        /// Startar användarmenyn och hanterar val för olika användaroperationer.
+        /// </summary>
         public static void Start(UserService userService, ServiceProvider serviceProvider)
         {
             bool running = true;
@@ -59,26 +62,147 @@ namespace ConsoleApp
             }
         }
 
-        private static void SimulateLogin(UserService userService, ServiceProvider serviceProvider)
+        /// <summary>
+        /// Uppdaterar en befintlig användare med möjlighet att välja specifika fält att ändra.
+        /// </summary>
+        static void UpdateUser(UserService userService)
         {
             Console.Clear();
-            Console.Write("Ange din e-post för att logga in: ");
+            Console.WriteLine("Uppdatera en användare");
+
+            Console.Write("Ange e-postadressen för användaren som ska uppdateras: ");
             string email = Console.ReadLine()?.ToLower();
 
             var user = userService.ReadUserByEmail(email);
+
             if (user != null)
             {
-                _loggedInUser = user;
-                Console.WriteLine($"Inloggning lyckades! Välkommen, {user.Fullname}.");
-                ContactMenu.Start(_loggedInUser, serviceProvider);
+                bool updating = true;
+
+                do
+                {
+                    Console.Clear();
+                    Console.WriteLine($"Användare: {user.Fullname}");
+                    Console.WriteLine("Vad vill du ändra?");
+                    Console.WriteLine("1. Förnamn");
+                    Console.WriteLine("2. Efternamn");
+                    Console.WriteLine("3. E-postadress");
+                    Console.WriteLine("4. Lösenord");
+                    Console.WriteLine("5. Avsluta uppdatering");
+                    Console.Write("Välj ett alternativ (1-5): ");
+
+                    var choice = Console.ReadLine();
+
+                    switch (choice)
+                    {
+                        case "1":
+                            Console.Write("Nytt förnamn: ");
+                            user.Name = Console.ReadLine();
+                            break;
+
+                        case "2":
+                            Console.Write("Nytt efternamn: ");
+                            user.Lastname = Console.ReadLine();
+                            break;
+
+                        case "3":
+                            Console.Write("Ny e-postadress: ");
+                            user.Email = Console.ReadLine();
+                            break;
+
+                        case "4":
+                            Console.Write("Nytt lösenord: ");
+                            string password = Console.ReadLine();
+                            user.SetPassword(password);
+                            break;
+
+                        case "5":
+                            updating = false;
+                            break;
+
+                        default:
+                            Console.WriteLine("Ogiltigt alternativ, försök igen.");
+                            break;
+                    }
+
+                    if (updating)
+                    {
+                        Console.Write("Vill du ändra något mer? (ja/nej): ");
+                        string response = Console.ReadLine()?.Trim().ToLower();
+                        if (response != "ja")
+                        {
+                            updating = false;
+                        }
+                    }
+
+                } while (updating);
+
+                userService.UpdateUser(user);
+                Console.WriteLine("Användare uppdaterad!");
             }
             else
             {
-                Console.WriteLine("Användare hittades inte.");
+                Console.WriteLine("Användare med den angivna e-postadressen hittades inte.");
+            }
+
+            Console.WriteLine("Tryck på en tangent för att fortsätta...");
+            Console.ReadKey();
+        }
+
+
+        /// <summary>
+        /// Tar bort en befintlig användare.
+        /// </summary>
+        static void DeleteUser(UserService userService)
+        {
+            Console.Clear();
+            Console.WriteLine("Ta bort en användare");
+
+            Console.Write("Ange e-postadressen för användaren som ska tas bort: ");
+            string email = Console.ReadLine()?.ToLower();
+
+            var user = userService.ReadUserByEmail(email);
+
+            if (user != null)
+            {
+                userService.DeleteUser(user);
+                Console.WriteLine("Användare raderad!");
+            }
+            else
+            {
+                Console.WriteLine("Användare med den angivna e-postadressen hittades inte.");
             }
         }
 
-        // Skapa användare
+        /// <summary>
+        /// Hämtar och visar alla användare.
+        /// </summary>
+        static void ReadAllUsers(UserService userService)
+        {
+            Console.Clear();
+            Console.WriteLine("Alla användare:");
+
+            var users = userService.ReadAllUsers();
+
+            if (users.Count > 0)
+            {
+                foreach (var user in users)
+                {
+                    Console.WriteLine($"Användare: {user.Fullname}");
+                    Console.WriteLine($"Email: {user.Email}");
+                    Console.WriteLine($"Roll: {user.Role}");
+                    Console.WriteLine("-------------------------------");
+                }
+            }
+            else
+            {
+                Console.WriteLine("Inga användare hittades.");
+            }
+        }
+
+        /// <summary>
+        /// Skapar en ny användare med inmatad information.
+        /// </summary>
         static void CreateUser(UserService userService)
         {
             Console.Clear();
@@ -86,6 +210,7 @@ namespace ConsoleApp
 
             string name;
             bool valid;
+
             // Förnamn
             do
             {
@@ -110,7 +235,7 @@ namespace ConsoleApp
 
             string email;
 
-            // Email
+            // E-post
             do
             {
                 Console.Write("Email: ");
@@ -139,8 +264,7 @@ namespace ConsoleApp
                 Console.Write("Lösenord: ");
                 password = Console.ReadLine();
 
-                valid = !string.IsNullOrWhiteSpace(password) && password.Length >= 6; // Exempel på minimum längd
-
+                valid = !string.IsNullOrWhiteSpace(password) && password.Length >= 6;
                 if (!valid)
                     Console.WriteLine("Lösenordet måste vara minst 6 tecken långt.");
             } while (!valid);
@@ -154,7 +278,6 @@ namespace ConsoleApp
                 role = Console.ReadLine()?.Trim();
 
                 role = role.Substring(0, 1).ToUpper() + role.Substring(1).ToLower();
-
                 valid = role == "Admin" || role == "Default";
 
                 if (!valid)
@@ -164,128 +287,37 @@ namespace ConsoleApp
             userService.CreateUser(name, lastname, email, password, role);
 
             Console.WriteLine("Användare skapad!");
-            Console.WriteLine("Tryck på en tangent för att fortsätta...");
-            Console.ReadKey();
         }
-
-
-
-        // Läs användare
-        static void ReadUser(UserService userService, ServiceProvider serviceProvider)
+        /// <summary>
+        /// Simulerar inloggning för en användare baserat på e-postadress.
+        /// </summary>
+        private static void SimulateLogin(UserService userService, ServiceProvider serviceProvider)
         {
             Console.Clear();
-            Console.WriteLine("Logga in som användare");
-
-            Console.Write("Email: ");
+            Console.Write("Ange din e-post för att logga in: ");
             string email = Console.ReadLine()?.ToLower();
 
+            Console.Write("Ange ditt lösenord: ");
+            string password = Console.ReadLine();
+
             var user = userService.ReadUserByEmail(email);
-
-            if (user != null)
+            if (user != null && user.ValidatePassword(password))
             {
-                _loggedInUser = user;
                 Console.WriteLine($"Inloggning lyckades! Välkommen, {user.Fullname}.");
+                Console.WriteLine("Tryck på en tangent för att fortsätta...");
+                Console.ReadKey();
 
-                // Starta en ny meny för kontaktoperationer
-                ContactMenu.Start(_loggedInUser, serviceProvider);
+                // Starta kontaktmenyn med den inloggade användaren
+                ContactMenu.Start(user, serviceProvider);
             }
             else
             {
-                Console.WriteLine("Användare hittades inte.");
+                Console.WriteLine("E-postadress eller lösenord är felaktigt. Försök igen.");
+                Console.WriteLine("Tryck på en tangent för att fortsätta...");
+                Console.ReadKey();
             }
-
-            Console.WriteLine("Tryck på en tangent för att fortsätta...");
-            Console.ReadKey();
         }
 
-
-        // Uppdatera användare
-        static void UpdateUser(UserService userService)
-        {
-            Console.Clear();
-            Console.WriteLine("Uppdatera en användare");
-
-            Console.Write("Email: ");
-            string email = Console.ReadLine()?.ToLower();  // Gör inmatad email till lowercase
-
-            var user = userService.ReadUserByEmail(email);  // Anropa en metod för att läsa användare efter e-postadress
-
-            if (user != null)
-            {
-                Console.Write("Förnamn (ny): ");
-                user.Name = Console.ReadLine();
-
-                Console.Write("Efternamn (ny): ");
-                user.Lastname = Console.ReadLine();
-
-                Console.Write("Email (ny): ");
-                user.Email = Console.ReadLine();
-
-                Console.Write("Lösenord (ny): ");
-                string password = Console.ReadLine();
-                user.SetPassword(password);
-
-                userService.UpdateUser(user);
-                Console.WriteLine("Användare uppdaterad!");
-            }
-            else
-            {
-                Console.WriteLine("Användare hittades inte.");
-            }
-
-            Console.WriteLine("Tryck på en tangent för att fortsätta...");
-            Console.ReadKey();
-        }
-
-        // Ta bort användare
-        static void DeleteUser(UserService userService)
-        {
-            Console.Clear();
-            Console.WriteLine("Ta bort en användare");
-
-            Console.Write("Email: ");
-            string email = Console.ReadLine()?.ToLower();  // Gör inmatad email till lowercase
-
-            var user = userService.ReadUserByEmail(email);  // Anropa en metod för att läsa användare efter e-postadress
-
-            if (user != null)
-            {
-                userService.DeleteUser(user);
-                Console.WriteLine("Användare raderad!");
-            }
-            else
-            {
-                Console.WriteLine("Användare hittades inte.");
-            }
-
-            Console.WriteLine("Tryck på en tangent för att fortsätta...");
-            Console.ReadKey();
-        }
-        static void ReadAllUsers(UserService userService)
-        {
-            Console.Clear();
-            Console.WriteLine("Alla användare:");
-
-            var users = userService.ReadAllUsers();  // Hämta alla användare från UserService
-
-            if (users.Count > 0)
-            {
-                foreach (var user in users)
-                {
-                    Console.WriteLine($"Användare: {user.Fullname}");
-                    Console.WriteLine($"Email: {user.Email}");
-                    Console.WriteLine($"Roll: {user.Role}");
-                    Console.WriteLine("-------------------------------");
-                }
-            }
-            else
-            {
-                Console.WriteLine("Inga användare hittades.");
-            }
-
-            Console.WriteLine("Tryck på en tangent för att fortsätta...");
-            Console.ReadKey();
-        }
 
     }
 }

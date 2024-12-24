@@ -9,6 +9,11 @@ namespace ConsoleApp
 {
     public static class ContactMenu
     {
+        /// <summary>
+        /// Startar menyn för att hantera kontakter.
+        /// </summary>
+        /// <param name="loggedInUser">Den inloggade användaren.</param>
+        /// <param name="serviceProvider">Dependency Injection-tjänsteprovider.</param>
         public static void Start(BaseUser loggedInUser, ServiceProvider serviceProvider)
         {
             var contactService = serviceProvider.GetService<IContactService>();
@@ -58,6 +63,9 @@ namespace ConsoleApp
             }
         }
 
+        /// <summary>
+        /// Skapar en ny kontakt för den inloggade användaren.
+        /// </summary>
         private static void CreateContact(IContactService contactService, BaseUser user)
         {
             Console.Clear();
@@ -87,6 +95,9 @@ namespace ConsoleApp
             Console.WriteLine("Kontakt skapad!");
         }
 
+        /// <summary>
+        /// Visar alla kontakter för den inloggade användaren.
+        /// </summary>
         private static void ReadAllContacts(IContactService contactService, BaseUser user)
         {
             Console.Clear();
@@ -110,6 +121,9 @@ namespace ConsoleApp
             }
         }
 
+        /// <summary>
+        /// Uppdaterar en befintlig kontakt för den inloggade användaren.
+        /// </summary>
         private static void UpdateContact(IContactService contactService, BaseUser user)
         {
             Console.Clear();
@@ -194,8 +208,9 @@ namespace ConsoleApp
             Console.ReadKey();
         }
 
-
-
+        /// <summary>
+        /// Tar bort en kontakt för den inloggade användaren.
+        /// </summary>
         private static void DeleteContact(IContactService contactService, BaseUser user)
         {
             Console.Clear();

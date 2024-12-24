@@ -6,12 +6,14 @@ using System.Threading.Tasks;
 
 namespace Business.CoreFiles.Models.Contacts
 {
+    /// <summary>
+    /// Representerar en favoritkontakt som är en utökning av klassen Contact.
+    /// </summary>
     public class FavoriteContact : Contact
     {
         /// <summary>
-        /// The Favorite property as a string, indicates that this is a favorite contact.
+        /// Anger att detta är en favoritkontakt.
         /// </summary>
         public string Favorite { get; set; } = "Favorite";
-
     }
 }

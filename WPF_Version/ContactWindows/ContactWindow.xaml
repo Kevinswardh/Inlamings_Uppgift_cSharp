@@ -1,0 +1,105 @@
+﻿<Window x:Class="WPF_Version.ContactWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="ContactWindow" 
+        Width="800"
+        SizeToContent="Height"
+        MinHeight="450"
+        MinWidth="700"
+        WindowStyle="None"
+        AllowsTransparency="True"
+        Background="Transparent"
+        WindowStartupLocation="CenterScreen">
+
+    <!-- Globala resurser -->
+    <Window.Resources>
+        <DropShadowEffect x:Key="DropShadow" 
+                          BlurRadius="7" 
+                          ShadowDepth="0" 
+                          Opacity="0.4" 
+                          Color="#D3D3D3"/>
+    </Window.Resources>
+
+    <!-- Yttre layout -->
+    <Grid Background="Transparent">
+        <!-- Wrapper för rundade hörn, skugga och marginal -->
+        <Border Background="#1f1f1f" 
+                CornerRadius="20" 
+                BorderBrush="#2A2A2A" 
+                BorderThickness="1"
+                Effect="{StaticResource DropShadow}"
+                Margin="5"
+                Padding="15">
+
+            <Grid>
+                <!-- Header -->
+                <Border Background="#1f1f1f" Height="40" VerticalAlignment="Top" MouseDown="Header_MouseDown">
+                    <DockPanel>
+                        <!-- Avstängningsknapp -->
+                        <Button Content="X" 
+                                Foreground="White" 
+                                Background="Transparent" 
+                                BorderBrush="Transparent" 
+                                HorizontalAlignment="Right" 
+                                VerticalAlignment="Center" 
+                                Width="40" 
+                                Height="40"
+                                Click="CloseButton_Click"/>
+                    </DockPanel>
+                </Border>
+
+                <!-- Layout med sidopanel och huvudvy -->
+                <Grid Margin="0,50,0,0">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="200"/>
+                        <!-- Sidopanel -->
+                        <ColumnDefinition Width="*"/>
+                        <!-- Huvudvy -->
+                    </Grid.ColumnDefinitions>
+
+                    <!-- Sidopanel -->
+                    <DockPanel Grid.Column="0" Background="#1f1f1f" Margin="0 0 20 0">
+                        <!-- Menyknappar -->
+                        <StackPanel DockPanel.Dock="Top" Margin="10">
+                            <Button Content="Favorites" 
+                                    Background="Transparent" 
+                                    Foreground="White" 
+                                    BorderBrush="Transparent"
+                                    FontSize="16"
+                                    Margin="0,0,0,10"
+                                    Click="NavigateToFavorites"/>
+                            <Button Content="Contacts" 
+                                    Background="Transparent" 
+                                    Foreground="White" 
+                                    BorderBrush="Transparent"
+                                    FontSize="16"
+                                    Margin="0,0,0,10"
+                                    Click="NavigateToContacts"/>
+                            <Button Content="Mina sidor" 
+                                    Background="Transparent" 
+                                    Foreground="White" 
+                                    BorderBrush="Transparent"
+                                    FontSize="16"
+                                    Click="NavigateToMyPages"/>
+                        </StackPanel>
+
+                        <!-- Logout-knapp längst ned -->
+                        <Button Content="Logout"
+                                DockPanel.Dock="Bottom"
+                                Background="Transparent"
+                                Foreground="White"
+                                BorderBrush="Transparent"
+                                FontSize="16"
+                                Margin="10"
+                                VerticalAlignment="Bottom"
+                                Click="LogoutButton_Click"/>
+                    </DockPanel>
+
+                    <!-- Huvudvy -->
+                    <Frame Name="ContentFrame" Grid.Column="1" Background="White" NavigationUIVisibility="Hidden"/>
+
+                </Grid>
+            </Grid>
+        </Border>
+    </Grid>
+</Window>

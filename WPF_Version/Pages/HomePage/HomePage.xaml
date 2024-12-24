@@ -1,0 +1,23 @@
+﻿<Page x:Class="WPF_Version.HomePage.HomePage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      Title="HomePage">
+    <Grid Background="#1f1f1f" VerticalAlignment="Center" HorizontalAlignment="Center">
+        <!-- Vertikal layout med avstånd via Margin -->
+        <StackPanel VerticalAlignment="Center" HorizontalAlignment="Center">
+            <!-- Text -->
+            <TextBlock Text="Welcome to Homepage" 
+                       Foreground="White" 
+                       FontSize="28" 
+                       HorizontalAlignment="Center"
+                       Margin="0,0,0,60"/>
+
+            <!-- Knappar -->
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                <Button Content="Login" Width="100" Height="40" Margin="0,0,30,0" Click="LoginButton_Click"/>
+                <Button Content="Register" Width="100" Height="40" Click="RegisterButton_Click"/>
+            </StackPanel>
+
+        </StackPanel>
+    </Grid>
+</Page>
