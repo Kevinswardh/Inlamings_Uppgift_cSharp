@@ -43,6 +43,15 @@ namespace Business.Logic._1_Services.UserService.Interface
         /// <param name="favoriteContact">Den kontakt som ska läggas till som favorit.</param>
         void AddFavorite(string userId, FavoriteContact favoriteContact);
 
+
+        /// <summary>
+        /// Uppdaterar en favoritkontakt för en specifik användare.
+        /// </summary>
+        /// <param name="userId">Användarens unika ID.</param>
+        /// <param name="favoriteContact">Den favoritkontakt som ska uppdateras.</param>
+        void UpdateFavorite(string userId, FavoriteContact favoriteContact);
+
+
         /// <summary>
         /// Hämtar alla favoritkontakter för en specifik användare.
         /// </summary>

@@ -14,6 +14,12 @@
                         Foreground="White"
                         BorderBrush="#2A2A2A"
                         Click="AddContactButton_Click"/>
+                <TextBlock Text="Contact Page" 
+                           Foreground="White" 
+                           FontSize="24" 
+                           FontWeight="Bold" 
+                           VerticalAlignment="Center" 
+                           Margin="150,0,0,0"/>
             </StackPanel>
 
             <!-- Scrollable Contacts List -->

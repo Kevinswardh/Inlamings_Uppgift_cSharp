@@ -73,5 +73,24 @@ namespace Business.Logic._2_Repositories
                 _jsonRepository.Update(user);
             }
         }
+
+        /// <summary>
+        /// Uppdaterar en favoritkontakt för en specifik användare.
+        /// </summary>
+        /// <param name="userId">Användarens unika ID.</param>
+        /// <param name="favoriteContact">Den uppdaterade favoritkontakten.</param>
+        public void UpdateFavorite(string userId, FavoriteContact favoriteContact)
+        {
+            var favorites = ReadFavoritesForUser(userId);
+            var existingFavorite = favorites.FirstOrDefault(f => f.Id == favoriteContact.Id);
+
+            if (existingFavorite != null)
+            {
+                favorites.Remove(existingFavorite);
+                favorites.Add(favoriteContact);
+                WriteFavoritesForUser(userId, favorites);
+            }
+        }
+
     }
 }

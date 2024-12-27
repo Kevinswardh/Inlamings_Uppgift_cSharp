@@ -92,6 +92,25 @@ namespace Business.Logic._1_Services.UserService
         }
 
         /// <summary>
+        /// Uppdaterar en favoritkontakt för en specifik användare.
+        /// </summary>
+        /// <param name="userId">Användarens unika ID.</param>
+        /// <param name="favoriteContact">Den uppdaterade favoritkontakten.</param>
+        public void UpdateFavorite(string userId, FavoriteContact favoriteContact)
+        {
+            var favorites = _contactRepository.ReadFavoritesForUser(userId);
+            var existingFavorite = favorites.FirstOrDefault(f => f.Id == favoriteContact.Id);
+
+            if (existingFavorite != null)
+            {
+                favorites.Remove(existingFavorite);
+                favorites.Add(favoriteContact);
+                _contactRepository.WriteFavoritesForUser(userId, favorites);
+            }
+        }
+
+
+        /// <summary>
         /// Hämtar alla favoritkontakter för en specifik användare.
         /// </summary>
         /// <param name="userId">Användarens unika ID.</param>

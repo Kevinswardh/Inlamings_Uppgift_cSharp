@@ -222,6 +222,30 @@ namespace Business.Logic._2_Repositories
         }
 
         /// <summary>
+        /// Uppdaterar en favoritkontakt för en specifik användare i JSON-filen.
+        /// </summary>
+        /// <param name="userId">Användarens unika ID.</param>
+        /// <param name="favoriteContact">Den uppdaterade favoritkontakten.</param>
+        public void UpdateFavorite(string userId, FavoriteContact favoriteContact)
+        {
+            var users = ReadAll<BaseUser>();
+            var user = users.FirstOrDefault(u => u.Id == userId);
+
+            if (user != null)
+            {
+                var existingFavorite = user.Favorites.FirstOrDefault(f => f.Id == favoriteContact.Id);
+
+                if (existingFavorite != null)
+                {
+                    user.Favorites.Remove(existingFavorite);
+                    user.Favorites.Add(favoriteContact);
+                    Update(user); // Uppdatera användaren i JSON-filen
+                }
+            }
+        }
+
+
+        /// <summary>
         /// Säkerställer att en exempelanvändare finns i JSON-filen.
         /// </summary>
         public void EnsureExampleUserExists()

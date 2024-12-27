@@ -52,9 +52,10 @@ namespace WPF_Version
 
         private void NavigateToFavorites(object sender, RoutedEventArgs e)
         {
-            // Navigera till FavoritesPage
-            ContentFrame.Navigate(new FavoritesPage());
+            // Navigera till FavoritesPage med användardata och tjänster
+            ContentFrame.Navigate(new FavoritesPage(_user, _contactService));
         }
+
 
         private void NavigateToContacts(object sender, RoutedEventArgs e)
         {

@@ -109,6 +109,18 @@
         "Notes": "Email notes"
       }
     ],
-    "Favorites": []
+    "Favorites": [
+      {
+        "Favorite": "Favorite",
+        "Id": "fed07a50-6bc7-4b7a-8e09-a80e11d72e94",
+        "Name": "keke",
+        "Lastname": "kaka",
+        "Fullname": "keke kaka",
+        "PhoneNumber": "0231200213",
+        "Address": "aff 45",
+        "Email": "re1r3@fe.33",
+        "Notes": "123"
+      }
+    ]
   }
 ]

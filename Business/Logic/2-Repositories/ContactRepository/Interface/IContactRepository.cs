@@ -35,5 +35,12 @@ namespace Business.Interfaces.Repositories
         /// <param name="userId">Användarens unika ID.</param>
         /// <param name="favorites">Listan med favoritkontakter som ska sparas.</param>
         void WriteFavoritesForUser(string userId, List<FavoriteContact> favorites);
+
+        // <summary>
+        /// Uppdaterar en favoritkontakt för en specifik användare.
+        /// </summary>
+        /// <param name="userId">Användarens unika ID.</param>
+        /// <param name="favoriteContact">Den favoritkontakt som ska uppdateras.</param>
+        void UpdateFavorite(string userId, FavoriteContact favoriteContact);
     }
 }

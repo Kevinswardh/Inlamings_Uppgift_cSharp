@@ -1,10 +1,11 @@
 ﻿using Business.CoreFiles.Models.Users;
+using Business.CoreFiles.Models.Contacts;
 using System.Collections.Generic;
 
 namespace Business._2_Repositories.JsonRepository.Interface
 {
     /// <summary>
-    /// Interface för att hantera CRUD-operationer för användare i JSON-datalagret.
+    /// Interface för att hantera CRUD-operationer och kontaktbaserade funktioner i JSON-datalagret.
     /// </summary>
     public interface IJsonRepository
     {
@@ -38,5 +39,45 @@ namespace Business._2_Repositories.JsonRepository.Interface
         /// </summary>
         /// <param name="id">Den unika identifieraren för användaren som ska tas bort.</param>
         void Delete(string id);
+
+        /// <summary>
+        /// Hämtar alla kontakter för en specifik användare.
+        /// </summary>
+        /// <param name="userId">Den unika identifieraren för användaren.</param>
+        /// <returns>En lista med kontakter kopplade till användaren.</returns>
+        List<Contact> ReadContactsForUser(string userId);
+
+        /// <summary>
+        /// Uppdaterar kontaktlistan för en specifik användare.
+        /// </summary>
+        /// <param name="userId">Den unika identifieraren för användaren.</param>
+        /// <param name="contacts">Listan med uppdaterade kontakter.</param>
+        void WriteContactsForUser(string userId, List<Contact> contacts);
+
+        /// <summary>
+        /// Hämtar alla favoritkontakter för en specifik användare.
+        /// </summary>
+        /// <param name="userId">Den unika identifieraren för användaren.</param>
+        /// <returns>En lista med favoritkontakter kopplade till användaren.</returns>
+        List<FavoriteContact> ReadFavoritesForUser(string userId);
+
+        /// <summary>
+        /// Uppdaterar favoritlistan för en specifik användare.
+        /// </summary>
+        /// <param name="userId">Den unika identifieraren för användaren.</param>
+        /// <param name="favorites">Listan med uppdaterade favoritkontakter.</param>
+        void WriteFavoritesForUser(string userId, List<FavoriteContact> favorites);
+
+        /// <summary>
+        /// Uppdaterar en enskild favoritkontakt för en specifik användare.
+        /// </summary>
+        /// <param name="userId">Den unika identifieraren för användaren.</param>
+        /// <param name="favoriteContact">Den favoritkontakt som ska uppdateras.</param>
+        void UpdateFavorite(string userId, FavoriteContact favoriteContact);
+
+        /// <summary>
+        /// Säkerställer att en exempelanvändare finns i JSON-filen.
+        /// </summary>
+        void EnsureExampleUserExists();
     }
 }
