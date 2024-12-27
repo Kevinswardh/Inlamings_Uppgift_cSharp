@@ -65,10 +65,10 @@ namespace Business.Tests.Mocking
             var contactService = new ContactService(mockContactRepository.Object);
 
             var userId = "123";
-            var contact = new Contact { Id = 1, Name = "Updated", Lastname = "Contact" };
+            var contact = new Contact { Id = "1", Name = "Updated", Lastname = "Contact" };
             var contacts = new List<Contact>
             {
-                new Contact { Id = 1, Name = "John", Lastname = "Doe", PhoneNumber = "123456789" }
+                new Contact { Id = "1", Name = "John", Lastname = "Doe", PhoneNumber = "123456789" }
             };
 
             // Ställ in mocken att returnera en lista med kontakter
@@ -89,7 +89,7 @@ namespace Business.Tests.Mocking
             var contactService = new ContactService(mockContactRepository.Object);
 
             var userId = "123";
-            var contactId = 1;
+            var contactId = "1";
             var contacts = new List<Contact>
             {
                 new Contact { Id = contactId, Name = "John", Lastname = "Doe", PhoneNumber = "123456789" }

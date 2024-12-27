@@ -1,0 +1,85 @@
+﻿<Window x:Class="WPF_Mvvm_Version.Views.ContactWindows.ContactWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="ContactWindow" 
+        Width="800"
+        SizeToContent="Height"
+        MinHeight="450"
+        MinWidth="700"
+        WindowStyle="None"
+        AllowsTransparency="True"
+        Background="Transparent"
+        WindowStartupLocation="CenterScreen">
+
+    <Grid Background="Transparent">
+        <Border Background="#1f1f1f" 
+                CornerRadius="20" 
+                BorderBrush="#2A2A2A" 
+                BorderThickness="1"
+                Padding="15">
+
+            <Grid>
+                <!-- Header -->
+                <DockPanel Height="40" VerticalAlignment="Top" Background="#1f1f1f" MouseDown="Header_MouseDown">
+                    <!-- Close button -->
+                    <Button Content="X" 
+                            Command="{Binding CloseCommand}"
+                            Width="40"
+                            Height="40"
+                            Background="Transparent"
+                            Foreground="White"
+                            BorderBrush="Transparent"
+                            HorizontalAlignment="Right" />
+                </DockPanel>
+
+                <!-- Main layout -->
+                <Grid Margin="0,50,0,0">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="200"/>
+                        <!-- Sidebar -->
+                        <ColumnDefinition Width="*"/>
+                        <!-- Main Content -->
+                    </Grid.ColumnDefinitions>
+
+                    <!-- Sidebar -->
+                    <StackPanel Grid.Column="0" Background="#1f1f1f" Margin="0,0,20,0">
+                        <Button Content="Favorites"
+                                Command="{Binding NavigateToFavoritesCommand}"
+                                Background="Transparent"
+                                Foreground="White"
+                                BorderBrush="Transparent"
+                                FontSize="16"
+                                Margin="10"/>
+                        <Button Content="Contacts"
+                                Command="{Binding NavigateToContactsCommand}"
+                                Background="Transparent"
+                                Foreground="White"
+                                BorderBrush="Transparent"
+                                FontSize="16"
+                                Margin="10"/>
+                        <Button Content="Mina sidor"
+                                Command="{Binding NavigateToMyPagesCommand}"
+                                Background="Transparent"
+                                Foreground="White"
+                                BorderBrush="Transparent"
+                                FontSize="16"
+                                Margin="10"/>
+
+                        <!-- Logout button -->
+                        <Button Content="Logout"
+                                Command="{Binding LogoutCommand}"
+                                Background="Transparent"
+                                Foreground="White"
+                                BorderBrush="Transparent"
+                                FontSize="16"
+                                Margin="10,180,10,10"
+                                VerticalAlignment="Bottom"/>
+                    </StackPanel>
+
+                    <!-- Main Content -->
+                    <Frame Name="ContentFrame" Grid.Column="1" NavigationUIVisibility="Hidden" Background="White"/>
+                </Grid>
+            </Grid>
+        </Border>
+    </Grid>
+</Window>

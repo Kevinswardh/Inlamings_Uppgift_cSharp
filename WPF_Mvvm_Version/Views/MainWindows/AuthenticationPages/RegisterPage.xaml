@@ -1,0 +1,81 @@
+﻿<Page x:Class="WPF_Mvvm_Version.Views.MainWindows.AuthenticationPages.RegisterPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:vm="clr-namespace:WPF_Mvvm_Version.ViewModels.MainWindows.AuthenticationPages"
+      xmlns:conv="clr-namespace:WPF_Mvvm_Version.Converters"
+      Title="RegisterPage">
+
+    <Page.Resources>
+        <conv:VisibilityConverter x:Key="VisibilityConverter"/>
+    </Page.Resources>
+
+    <Grid Background="#1f1f1f" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="0,0,0,20">
+        <StackPanel VerticalAlignment="Center" HorizontalAlignment="Center" Width="300">
+            <TextBlock Text="Register Page"
+                       Foreground="White"
+                       FontSize="28"
+                       HorizontalAlignment="Center"
+                       Margin="0,0,0,20" />
+
+            <!-- Name -->
+            <StackPanel Margin="0,0,0,10">
+                <TextBlock Text="Name"
+                           Foreground="White"
+                           FontSize="16"
+                           Margin="0,0,0,5" />
+                <TextBox Text="{Binding Name}" Height="30" FontSize="14" />
+                <TextBlock Text="{Binding NameErrorText}" Foreground="Red" FontSize="12" Visibility="{Binding NameErrorText, Converter={StaticResource VisibilityConverter}}" />
+            </StackPanel>
+
+            <!-- Lastname -->
+            <StackPanel Margin="0,0,0,10">
+                <TextBlock Text="Lastname"
+                           Foreground="White"
+                           FontSize="16"
+                           Margin="0,0,0,5" />
+                <TextBox Text="{Binding Lastname}" Height="30" FontSize="14" />
+                <TextBlock Text="{Binding LastnameErrorText}" Foreground="Red" FontSize="12" Visibility="{Binding LastnameErrorText, Converter={StaticResource VisibilityConverter}}" />
+            </StackPanel>
+
+            <!-- Email -->
+            <StackPanel Margin="0,0,0,10">
+                <TextBlock Text="Email"
+                           Foreground="White"
+                           FontSize="16"
+                           Margin="0,0,0,5" />
+                <TextBox Text="{Binding Email}" Height="30" FontSize="14" />
+                <TextBlock Text="{Binding EmailErrorText}" Foreground="Red" FontSize="12" Visibility="{Binding EmailErrorText, Converter={StaticResource VisibilityConverter}}" />
+            </StackPanel>
+
+            <!-- Password -->
+            <StackPanel Margin="0,0,0,10">
+                <TextBlock Text="Password"
+                           Foreground="White"
+                           FontSize="16"
+                           Margin="0,0,0,5" />
+                <PasswordBox PasswordChanged="PasswordBox_PasswordChanged" Height="30" FontSize="14" />
+                <TextBlock Text="{Binding PasswordErrorText}" Foreground="Red" FontSize="12" Visibility="{Binding PasswordErrorText, Converter={StaticResource VisibilityConverter}}" />
+
+            </StackPanel>
+
+            <!-- Role -->
+            <StackPanel Margin="0,0,0,20">
+                <TextBlock Text="Role"
+               Foreground="White"
+               FontSize="16"
+               Margin="0,0,0,5" />
+                <ComboBox SelectedItem="{Binding Role}" Height="30" FontSize="14" Foreground="Black" SelectedIndex="-1">
+                    <ComboBoxItem Content="Admin" />
+                    <ComboBoxItem Content="Default" />
+                </ComboBox>
+                <TextBlock Text="{Binding RoleErrorText}" Foreground="Red" FontSize="12" Visibility="{Binding RoleErrorText, Converter={StaticResource VisibilityConverter}}" />
+            </StackPanel>
+
+            <!-- Buttons -->
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                <Button Content="Create" Width="100" Height="40" Margin="0,0,10,0" Command="{Binding CreateCommand}" />
+                <Button Content="Back" Width="100" Height="40" Command="{Binding BackCommand}" />
+            </StackPanel>
+        </StackPanel>
+    </Grid>
+</Page>

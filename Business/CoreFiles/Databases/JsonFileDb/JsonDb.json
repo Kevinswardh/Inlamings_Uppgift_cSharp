@@ -122,5 +122,29 @@
         "Notes": "123"
       }
     ]
+  },
+  {
+    "Role": "Default",
+    "UserType": "Standard User",
+    "Id": "2b694eed-c06f-4639-821d-e3074bee10f5",
+    "Name": "kevino",
+    "Lastname": "swärdo",
+    "Fullname": "kevino swärdo",
+    "Email": "lelo@lelo.lelo",
+    "Password": "jZae727K08KaOmKSgOaGzww/XVqGr/PKEgIMkjrcbJI=",
+    "Contacts": [],
+    "Favorites": []
+  },
+  {
+    "Role": "Default",
+    "UserType": "Standard User",
+    "Id": "009c00ec-c100-4e49-b684-2a1794d0e2e8",
+    "Name": "pepe",
+    "Lastname": "pepe",
+    "Fullname": "pepe pepe",
+    "Email": "pepe@pepe.pepe",
+    "Password": "jZae727K08KaOmKSgOaGzww/XVqGr/PKEgIMkjrcbJI=",
+    "Contacts": [],
+    "Favorites": []
   }
 ]

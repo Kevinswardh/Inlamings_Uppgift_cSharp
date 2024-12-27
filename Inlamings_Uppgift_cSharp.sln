@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.10.34928.147
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ConsoleVersion", "Inlamings_Uppgift_cSharp\ConsoleVersion.csproj", "{17642C31-F0A0-498C-AA2A-47A10246C9E8}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Console_Version", "Inlamings_Uppgift_cSharp\Console_Version.csproj", "{17642C31-F0A0-498C-AA2A-47A10246C9E8}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Business", "Business\Business.csproj", "{426A0427-EC89-457A-BF6F-55BC9AEE7D0E}"
 EndProject
@@ -11,7 +11,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Business.Tests", "Business.
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Business.Tests.Mocking", "Business.Tests.Mocking\Business.Tests.Mocking.csproj", "{AA703FBF-D1E9-4D0C-90B0-F61E7693862C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WPF_Version", "WPF_Version\WPF_Version.csproj", "{3CF82F57-24C4-4D66-8782-61B0EF318926}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WPF_Version", "WPF_Version\WPF_Version.csproj", "{3CF82F57-24C4-4D66-8782-61B0EF318926}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WPF_Mvvm_Version", "WPF_Mvvm_Version\WPF_Mvvm_Version.csproj", "{81230043-74F2-4790-864C-19911FB19193}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -39,6 +41,10 @@ Global
 		{3CF82F57-24C4-4D66-8782-61B0EF318926}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{3CF82F57-24C4-4D66-8782-61B0EF318926}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{3CF82F57-24C4-4D66-8782-61B0EF318926}.Release|Any CPU.Build.0 = Release|Any CPU
+		{81230043-74F2-4790-864C-19911FB19193}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{81230043-74F2-4790-864C-19911FB19193}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{81230043-74F2-4790-864C-19911FB19193}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{81230043-74F2-4790-864C-19911FB19193}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

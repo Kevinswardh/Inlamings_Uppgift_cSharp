@@ -29,7 +29,7 @@ namespace Business.Tests
         {
             // Arrange
             var userId = "user1";
-            var contact = new Contact { Id = 1, Name = "John", Lastname = "Doe", PhoneNumber = "123456789" };
+            var contact = new Contact { Id = "1", Name = "John", Lastname = "Doe", PhoneNumber = "123456789" };
 
             // Act
             _contactService.CreateContact(userId, contact);
@@ -46,7 +46,7 @@ namespace Business.Tests
         {
             // Arrange
             var userId = "user1";
-            var contact = new Contact { Id = 1, Name = "John", Lastname = "Doe", PhoneNumber = "123456789" };
+            var contact = new Contact { Id = "1", Name = "John", Lastname = "Doe", PhoneNumber = "123456789" };
             _contactService.CreateContact(userId, contact);
 
             // Act
@@ -66,7 +66,7 @@ namespace Business.Tests
         {
             // Arrange
             var userId = "user1";
-            var contact = new Contact { Id = 1, Name = "John", Lastname = "Doe", PhoneNumber = "123456789" };
+            var contact = new Contact { Id = "1", Name = "John", Lastname = "Doe", PhoneNumber = "123456789" };
             _contactService.CreateContact(userId, contact);
 
             // Act
@@ -82,7 +82,7 @@ namespace Business.Tests
         {
             // Arrange
             var userId = "user1";
-            var favorite = new FavoriteContact { Id = 1, Name = "Alice", Lastname = "Johnson", PhoneNumber = "987654321" };
+            var favorite = new FavoriteContact { Id = "1", Name = "Alice", Lastname = "Johnson", PhoneNumber = "987654321" };
 
             // Act
             _contactService.AddFavorite(userId, favorite);
@@ -99,7 +99,7 @@ namespace Business.Tests
         {
             // Arrange
             var userId = "user1";
-            var favorite = new FavoriteContact { Id = 1, Name = "Alice", Lastname = "Johnson", PhoneNumber = "987654321" };
+            var favorite = new FavoriteContact { Id = "1", Name = "Alice", Lastname = "Johnson", PhoneNumber = "987654321" };
             _contactService.AddFavorite(userId, favorite);
 
             // Act
@@ -155,6 +155,11 @@ namespace Business.Tests
         public void WriteFavoritesForUser(string userId, List<FavoriteContact> favorites)
         {
             _favorites[userId] = favorites;
+        }
+
+        public void UpdateFavorite(string userId, FavoriteContact favoriteContact)
+        {
+            throw new NotImplementedException();
         }
     }
 }
