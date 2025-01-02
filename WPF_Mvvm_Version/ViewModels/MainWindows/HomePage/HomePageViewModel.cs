@@ -42,7 +42,7 @@ namespace WPF_Mvvm_Version.ViewModels.MainWindows.HomePage
         {
             if (_navigationService != null)
             {
-                var loginPage = new LoginPage(_userService, App.GetContactService());
+                var loginPage = new LoginPage(_userService, App.GetContactService(), _navigationService);
                 _navigationService.Navigate(loginPage);
             }
             else

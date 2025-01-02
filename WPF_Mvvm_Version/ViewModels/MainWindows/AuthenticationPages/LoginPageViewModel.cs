@@ -5,6 +5,7 @@ using CommunityToolkit.Mvvm.Input;
 using System.Text.RegularExpressions;
 using System.Windows;
 using System.Windows.Input;
+using System.Windows.Navigation;
 
 namespace WPF_Mvvm_Version.ViewModels.MainWindows.AuthenticationPages
 {
@@ -12,6 +13,7 @@ namespace WPF_Mvvm_Version.ViewModels.MainWindows.AuthenticationPages
     {
         private readonly UserService _userService;
         private readonly ContactService _contactService;
+        private readonly NavigationService _navigationService;
 
         public string Email { get; set; }
         public string Password { get; set; }
@@ -23,10 +25,11 @@ namespace WPF_Mvvm_Version.ViewModels.MainWindows.AuthenticationPages
         public ICommand LoginCommand { get; }
         public ICommand BackCommand { get; }
 
-        public LoginPageViewModel(UserService userService, ContactService contactService)
+        public LoginPageViewModel(UserService userService, ContactService contactService, NavigationService navigationService)
         {
             _userService = userService;
             _contactService = contactService;
+            _navigationService = navigationService;
 
             LoginCommand = new RelayCommand(OnLoginClicked);
             BackCommand = new RelayCommand(OnBackClicked);
@@ -76,7 +79,14 @@ namespace WPF_Mvvm_Version.ViewModels.MainWindows.AuthenticationPages
 
         private void OnBackClicked()
         {
-            App.GetNavigationService()?.Navigate(new Views.HomePage.HomePage());
+            if (_navigationService != null)
+            {
+                _navigationService.GoBack();
+            }
+            else
+            {
+                MessageBox.Show("NavigationService är null! Kontrollera att det har initierats korrekt.", "Fel", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
         }
     }
 }
