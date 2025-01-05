@@ -146,5 +146,100 @@
     "Password": "jZae727K08KaOmKSgOaGzww/XVqGr/PKEgIMkjrcbJI=",
     "Contacts": [],
     "Favorites": []
+  },
+  {
+    "Role": "Default",
+    "UserType": "Standard User",
+    "Id": "8e0635c3-5b59-467d-ba83-e19701424f70",
+    "Name": "lele",
+    "Lastname": "lele",
+    "Fullname": "lele lele",
+    "Email": "lele@lele.lele",
+    "Password": "jZae727K08KaOmKSgOaGzww/XVqGr/PKEgIMkjrcbJI=",
+    "Contacts": [
+      {
+        "Id": "361edb0d-fb25-4ebd-b121-4792952563fc",
+        "Name": "kevin",
+        "Lastname": "swärdh",
+        "Fullname": "kevin swärdh",
+        "PhoneNumber": "0733764337",
+        "Address": "axgatan 47",
+        "Email": "kevinswardh@gmail.com",
+        "Notes": "Pelle"
+      }
+    ],
+    "Favorites": []
+  },
+  {
+    "Role": "Default",
+    "UserType": "Standard User",
+    "Id": "4ad718d5-cbc6-4827-a08f-8386d30b4730",
+    "Name": "momo",
+    "Lastname": "momo",
+    "Fullname": "momo momo",
+    "Email": "momo@momo.momo",
+    "Password": "jZae727K08KaOmKSgOaGzww/XVqGr/PKEgIMkjrcbJI=",
+    "Contacts": [],
+    "Favorites": []
+  },
+  {
+    "Role": "Default",
+    "UserType": "Standard User",
+    "Id": "c8d2b23e-1bf2-426d-b0b2-1a24512ee169",
+    "Name": "kevin",
+    "Lastname": "swärdh",
+    "Fullname": "kevin swärdh",
+    "Email": "kevinsward@gmail.com",
+    "Password": "jZae727K08KaOmKSgOaGzww/XVqGr/PKEgIMkjrcbJI=",
+    "Contacts": [],
+    "Favorites": []
+  },
+  {
+    "Role": "Default",
+    "UserType": "Standard User",
+    "Id": "476659d0-f782-4913-a763-350bf6ed42ae",
+    "Name": "pekpek",
+    "Lastname": "pek",
+    "Fullname": "pekpek pek",
+    "Email": "pek@pek.pek",
+    "Password": "jZae727K08KaOmKSgOaGzww/XVqGr/PKEgIMkjrcbJI=",
+    "Contacts": [],
+    "Favorites": []
+  },
+  {
+    "Role": "Default",
+    "UserType": "Standard User",
+    "Id": "4e1074c7-ab93-4c8d-a21b-d5d5d96e7f69",
+    "Name": "test",
+    "Lastname": "test",
+    "Fullname": "test test",
+    "Email": "test@test.test",
+    "Password": "jZae727K08KaOmKSgOaGzww/XVqGr/PKEgIMkjrcbJI=",
+    "Contacts": [],
+    "Favorites": []
+  },
+  {
+    "Role": "Default",
+    "UserType": "Standard User",
+    "Id": "d6958b16-1330-4a86-a563-a752001691a9",
+    "Name": "er",
+    "Lastname": "er",
+    "Fullname": "er er",
+    "Email": "er@er.er",
+    "Password": "jZae727K08KaOmKSgOaGzww/XVqGr/PKEgIMkjrcbJI=",
+    "Contacts": [],
+    "Favorites": []
+  },
+  {
+    "Role": "Admin",
+    "UserType": "Administrator",
+    "Id": "790f9dde-08ef-4361-bed3-8d43d9c4ae01",
+    "Name": "nu",
+    "Lastname": "nu",
+    "Fullname": "nu nu",
+    "Email": "nu@nu.nu",
+    "Password": "jZae727K08KaOmKSgOaGzww/XVqGr/PKEgIMkjrcbJI=",
+    "Contacts": [],
+    "Favorites": []
   }
 ]

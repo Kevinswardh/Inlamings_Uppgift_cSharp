@@ -20,17 +20,35 @@
     </Window.Resources>
 
     <Grid Background="Transparent">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="133*"/>
+            <ColumnDefinition Width="267*"/>
+        </Grid.ColumnDefinitions>
         <Border Background="#1f1f1f" 
                 CornerRadius="20" 
                 BorderBrush="#2A2A2A" 
                 BorderThickness="1"
                 Effect="{StaticResource DropShadow}"
-                Margin="5"
-                Padding="15">
+                Margin="5,5,5,5"
+                Padding="15" Grid.ColumnSpan="2">
 
             <Grid>
+                <!-- Header Section -->
                 <Border Background="#1f1f1f" Height="40" VerticalAlignment="Top" MouseDown="Header_MouseDown">
                     <DockPanel>
+                        <!-- Left: Icon -->
+                        <Image Source="/Resources/top-logo.png"
+       Width="40"
+       Height="40"
+       VerticalAlignment="Center"
+       Margin="10,0,10,0">
+                        </Image>
+                            <!-- Blue overlay -->
+                            <Rectangle Fill="Blue" Opacity="0.5" />
+
+
+
+                        <!-- Right: Close Button -->
                         <Button Content="X" 
                                 Foreground="White" 
                                 Background="Transparent" 
@@ -39,10 +57,12 @@
                                 VerticalAlignment="Center" 
                                 Width="40" 
                                 Height="40"
-                                Click="CloseButton_Click"/>
+                                Click="CloseButton_Click"
+                                DockPanel.Dock="Right"/>
                     </DockPanel>
                 </Border>
 
+                <!-- Content Section -->
                 <Grid Margin="0,50,0,0" VerticalAlignment="Center" HorizontalAlignment="Center">
                     <!-- Frame för navigation -->
                     <Frame Name="ContentFrame" NavigationUIVisibility="Hidden" />

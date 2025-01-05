@@ -46,11 +46,11 @@
 
                 <!-- Buttons -->
                 <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="0,20,0,0">
-                    <Button Content="Save" Width="100" Height="40" Margin="0,0,20,0" 
-                            Background="#1F1F1F" Foreground="White" BorderBrush="#273E51"
+                    <Button Content="Save" Style="{StaticResource OrangeButtonStyle}" Width="100" Height="40" Margin="0,0,20,0" 
+                             BorderBrush="#273E51"
                             Command="{Binding SaveCommand}" />
-                    <Button Content="Cancel" Width="100" Height="40" 
-                            Background="#1F1F1F" Foreground="White" BorderBrush="#FF5555"
+                    <Button Content="Cancel" Style="{StaticResource OrangeButtonStyle}" Width="100" Height="40" 
+                             BorderBrush="#FF5555"
                             Command="{Binding CancelCommand}" />
                 </StackPanel>
             </StackPanel>

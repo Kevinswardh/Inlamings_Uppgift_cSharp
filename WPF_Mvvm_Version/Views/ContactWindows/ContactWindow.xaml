@@ -21,8 +21,15 @@
             <Grid>
                 <!-- Header -->
                 <DockPanel Height="40" VerticalAlignment="Top" Background="#1f1f1f" MouseDown="Header_MouseDown">
+                    <!-- Left: Icon -->
+                    <Image Source="/Resources/top-logo.png"
+Width="40"
+Height="40"
+VerticalAlignment="Center"
+Margin="10,0,10,0" />
                     <!-- Close button -->
                     <Button Content="X" 
+
                             Command="{Binding CloseCommand}"
                             Width="40"
                             Height="40"
@@ -44,6 +51,7 @@
                     <!-- Sidebar -->
                     <StackPanel Grid.Column="0" Background="#1f1f1f" Margin="0,0,20,0">
                         <Button Content="Favorites"
+                                
                                 Command="{Binding NavigateToFavoritesCommand}"
                                 Background="Transparent"
                                 Foreground="White"

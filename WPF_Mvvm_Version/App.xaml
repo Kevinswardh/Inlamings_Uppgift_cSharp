@@ -1,9 +1,27 @@
 ﻿<Application x:Class="WPF_Mvvm_Version.App"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-             xmlns:local="clr-namespace:WPF_Mvvm_Version"
-             StartupUri="MainWindow.xaml">
+             xmlns:local="clr-namespace:WPF_Mvvm_Version">
     <Application.Resources>
-         
+        <!-- Resurser -->
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <!-- Länka till dina stilar här -->
+                
+                <!--Buttons styles-->
+                <ResourceDictionary Source="Styles/ButtonStyles.xaml" />
+                
+                <!--Text input styles -->
+                <ResourceDictionary Source="Styles/TextInputStyles.xaml" />
+
+                <!-- Password input styles -->
+                <ResourceDictionary Source="Styles/PasswordInputStyles.xaml" />
+
+                <!-- Combobox input styles -->
+                <ResourceDictionary Source="Styles/ComboBoxInputStyles.xaml" />
+
+
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
     </Application.Resources>
 </Application>

@@ -24,40 +24,57 @@ namespace Business.CoreFiles.Factory
         {
             BaseUser user;
 
-            // Genererar ett unikt GUID för den nya användaren
-            var userId = GuidGenerator.GenerateGuid();  // Hämtar ett nytt GUID för användaren
+            // Debugging output to check what role value is being passed
+            Console.WriteLine($"Role passed: '{role}' (Length: {role.Length})");
 
-            // Kontrollerar rollen och skapar rätt typ av användare
-            if (role == "Admin")
+            // Trim everything except the last word after the dot
+            int lastDotIndex = role.LastIndexOf(' ');
+            if (lastDotIndex != -1)
             {
-                user = new Admin  // Skapar en Admin-användare
+                role = role.Substring(lastDotIndex + 1).Trim();  // Keep only the part after the last dot
+            }
+
+            // Debug the role after trimming
+            Console.WriteLine($"Trimmed role: '{role}' (Length: {role.Length})");
+
+            // Generate a unique GUID for the new user
+            var userId = GuidGenerator.GenerateGuid();  // Retrieve the GUID for the new user
+
+            // Check the role and create the corresponding user
+            if (string.Equals(role, "Admin", StringComparison.OrdinalIgnoreCase))
+            {
+                user = new Admin
                 {
-                    Id = userId,  // Tilldelar det genererade GUID som ID
+                    Id = userId,
                     Name = name,
                     Lastname = lastname,
                     Email = email,
-                    Contacts = new List<Contact>(),  // Initierar en tom lista för kontakter
-                    Favorites = new List<FavoriteContact>()  // Initierar en tom lista för favoriter
+                    Contacts = new List<Contact>(),
+                    Favorites = new List<FavoriteContact>()
                 };
             }
             else
             {
-                user = new DefaultUser  // Skapar en DefaultUser om rollen inte är Admin
+                user = new DefaultUser
                 {
-                    Id = userId,  // Tilldelar det genererade GUID som ID
+                    Id = userId,
                     Name = name,
                     Lastname = lastname,
                     Email = email,
-                    Contacts = new List<Contact>(),  // Initierar en tom lista för kontakter
-                    Favorites = new List<FavoriteContact>()  // Initierar en tom lista för favoriter
+                    Contacts = new List<Contact>(),
+                    Favorites = new List<FavoriteContact>()
                 };
             }
 
-            // Sätter lösenordet med hjälp av BaseUser-metoden
+            // Set the password using the BaseUser method
             user.SetPassword(password);
 
-            // Returnerar den skapade användaren med GUID, tomma listor och övriga egenskaper
+            // Return the created user with GUID, empty lists, and other properties
             return user;
         }
+
+
+
+
     }
 }

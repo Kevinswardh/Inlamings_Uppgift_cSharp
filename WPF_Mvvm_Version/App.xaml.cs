@@ -30,8 +30,8 @@ namespace WPF_Mvvm_Version
             _contactService = new ContactService(contactRepository);
 
             // Skapa MainWindow
-            var mainWindow = new MainWindow();
-            mainWindow.Show();
+           var mainWindow = new MainWindow();
+           mainWindow.Show();
 
             // Tilldela NavigationService från ContentFrame
             var frame = mainWindow.ContentFrame; // Se till att detta inte är null

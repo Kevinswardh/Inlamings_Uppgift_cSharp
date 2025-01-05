@@ -15,12 +15,47 @@ namespace WPF_Mvvm_Version.ViewModels.MainWindows.AuthenticationPages
         private readonly ContactService _contactService;
         private readonly NavigationService _navigationService;
 
-        public string Email { get; set; }
-        public string Password { get; set; }
-        public string EmailErrorText { get; set; }
-        public string PasswordErrorText { get; set; }
-        public Visibility EmailErrorVisibility { get; set; } = Visibility.Collapsed;
-        public Visibility PasswordErrorVisibility { get; set; } = Visibility.Collapsed;
+        private string _email;
+        public string Email
+        {
+            get => _email;
+            set => SetProperty(ref _email, value);
+        }
+
+        private string _password;
+        public string Password
+        {
+            get => _password;
+            set => SetProperty(ref _password, value);
+        }
+
+        private string _emailErrorText;
+        public string EmailErrorText
+        {
+            get => _emailErrorText;
+            set => SetProperty(ref _emailErrorText, value);
+        }
+
+        private string _passwordErrorText;
+        public string PasswordErrorText
+        {
+            get => _passwordErrorText;
+            set => SetProperty(ref _passwordErrorText, value);
+        }
+
+        private Visibility _emailErrorVisibility = Visibility.Collapsed;
+        public Visibility EmailErrorVisibility
+        {
+            get => _emailErrorVisibility;
+            set => SetProperty(ref _emailErrorVisibility, value);
+        }
+
+        private Visibility _passwordErrorVisibility = Visibility.Collapsed;
+        public Visibility PasswordErrorVisibility
+        {
+            get => _passwordErrorVisibility;
+            set => SetProperty(ref _passwordErrorVisibility, value);
+        }
 
         public ICommand LoginCommand { get; }
         public ICommand BackCommand { get; }
@@ -49,7 +84,7 @@ namespace WPF_Mvvm_Version.ViewModels.MainWindows.AuthenticationPages
             }
             else
             {
-                MessageBox.Show("Ogiltig e-postadress eller lösenord.", "Inloggning misslyckades", MessageBoxButton.OK, MessageBoxImage.Error);
+                MessageBox.Show("Account doesn't exist.", "Login failed.", MessageBoxButton.OK, MessageBoxImage.Error);
             }
         }
 
@@ -60,16 +95,22 @@ namespace WPF_Mvvm_Version.ViewModels.MainWindows.AuthenticationPages
 
             bool isValid = true;
 
-            if (string.IsNullOrWhiteSpace(Email) || !Regex.IsMatch(Email, @"^[^@\s]+@[^@\s]+\.[^@\s]{2,}$"))
+            if (string.IsNullOrWhiteSpace(Email))
             {
-                EmailErrorText = "Ogiltig e-postadress. Kontrollera att den är korrekt.";
+                EmailErrorText = "Please enter email.";
+                EmailErrorVisibility = Visibility.Visible;
+                isValid = false;
+            }
+            else if (!Regex.IsMatch(Email, @"^[^@\s]+@[^@\s]+\.[^@\s]{2,}$"))
+            {
+                EmailErrorText = "Email måste vara korrekt format.";
                 EmailErrorVisibility = Visibility.Visible;
                 isValid = false;
             }
 
             if (string.IsNullOrWhiteSpace(Password))
             {
-                PasswordErrorText = "Lösenord får inte vara tomt.";
+                PasswordErrorText = "Please enter password.";
                 PasswordErrorVisibility = Visibility.Visible;
                 isValid = false;
             }
@@ -79,14 +120,7 @@ namespace WPF_Mvvm_Version.ViewModels.MainWindows.AuthenticationPages
 
         private void OnBackClicked()
         {
-            if (_navigationService != null)
-            {
-                _navigationService.GoBack();
-            }
-            else
-            {
-                MessageBox.Show("NavigationService är null! Kontrollera att det har initierats korrekt.", "Fel", MessageBoxButton.OK, MessageBoxImage.Error);
-            }
+            _navigationService?.GoBack();
         }
     }
 }
