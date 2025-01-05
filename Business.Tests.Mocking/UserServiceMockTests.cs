@@ -1,137 +1,124 @@
-﻿using Business.Services;
-using Business.CoreFiles.Models.Users;
+﻿using Business.CoreFiles.Models.Users;
 using Business.Interfaces.IUser;
-using Business.CoreFiles.Models.Contacts;
-using Business.Interfaces.Repositories;
-using Business.Logic._1_Services.UserService;
-using Business.CoreFiles.Models.Users.Roles;
 using Moq;
 using Xunit;
 using System.Collections.Generic;
+using Business.CoreFiles.Models.Users.Roles;
 
 namespace Business.Tests.Mocking
 {
     /// <summary>
-    /// Enhetstester för UserService och ContactService med hjälp av mockade repositories.
+    /// Enhetstester för UserService med mockade repositories.
     /// </summary>
     public class UserServiceMockTests
     {
         [Fact]
-        public void CreateContact_ShouldCallWriteContactsOnRepository()
+        public void CreateUser_ShouldCreateUserSuccessfully()
         {
             // Arrange
-            var mockContactRepository = new Mock<IContactRepository>();
-            var contactService = new ContactService(mockContactRepository.Object);
+            var mockUserService = new Mock<IUserService>();
 
-            var userId = "123";
-            var contact = new Contact { Name = "John", Lastname = "Doe", PhoneNumber = "123456789" };
-
-            // Se till att ReadContactsForUser returnerar en tom lista
-            mockContactRepository.Setup(repo => repo.ReadContactsForUser(userId)).Returns(new List<Contact>());
+            var name = "John";
+            var lastname = "Doe";
+            var email = "john.doe@example.com";
+            var password = "password123";
+            var role = "User";
 
             // Act
-            contactService.CreateContact(userId, contact);
+            mockUserService.Object.CreateUser(name, lastname, email, password, role);
 
             // Assert
-            mockContactRepository.Verify(repo => repo.WriteContactsForUser(userId, It.IsAny<List<Contact>>()), Times.Once);
+            mockUserService.Verify(service => service.CreateUser(name, lastname, email, password, role), Times.Once);
         }
 
         [Fact]
-        public void ReadUser_ShouldReturnUserFromRepository()
+        public void CreateUser_WithBaseUser_ShouldCreateUserSuccessfully()
         {
             // Arrange
-            var mockUserRepository = new Mock<IUserRepository>();
-            var userService = new UserService(mockUserRepository.Object, null);
+            var mockUserService = new Mock<IUserService>();
 
-            var userId = "123";
-            var user = new DefaultUser { Id = userId, Name = "Test", Lastname = "User" };
-
-            // Ställ in mocken att returnera en användare för det givna användar-ID:t
-            mockUserRepository.Setup(repo => repo.GetUser(userId)).Returns(user);
+            var user = new DefaultUser { Name = "John", Lastname = "Doe", Email = "john.doe@example.com" };
 
             // Act
-            var result = userService.ReadUser(userId);
+            mockUserService.Object.CreateUser(user);
+
+            // Assert
+            mockUserService.Verify(service => service.CreateUser(user), Times.Once);
+        }
+
+        [Fact]
+        public void ReadUser_ShouldReturnUser()
+        {
+            // Arrange
+            var mockUserService = new Mock<IUserService>();
+
+            var userId = "123";
+            var user = new DefaultUser { Id = userId, Name = "John", Lastname = "Doe" };
+
+            mockUserService.Setup(service => service.ReadUser(userId)).Returns(user);
+
+            // Act
+            var result = mockUserService.Object.ReadUser(userId);
 
             // Assert
             Assert.Equal(user, result);
-            mockUserRepository.Verify(repo => repo.GetUser(userId), Times.Once);
+            mockUserService.Verify(service => service.ReadUser(userId), Times.Once);
         }
 
         [Fact]
-        public void UpdateContact_ShouldCallWriteContactsOnRepository()
+        public void UpdateUser_ShouldUpdateUserSuccessfully()
         {
             // Arrange
-            var mockContactRepository = new Mock<IContactRepository>();
-            var contactService = new ContactService(mockContactRepository.Object);
+            var mockUserService = new Mock<IUserService>();
 
-            var userId = "123";
-            var contact = new Contact { Id = "1", Name = "Updated", Lastname = "Contact" };
-            var contacts = new List<Contact>
-            {
-                new Contact { Id = "1", Name = "John", Lastname = "Doe", PhoneNumber = "123456789" }
-            };
-
-            // Ställ in mocken att returnera en lista med kontakter
-            mockContactRepository.Setup(repo => repo.ReadContactsForUser(userId)).Returns(contacts);
+            var user = new DefaultUser { Id = "123", Name = "Updated", Lastname = "User" };
 
             // Act
-            contactService.UpdateContact(userId, contact);
+            mockUserService.Object.UpdateUser(user);
 
             // Assert
-            mockContactRepository.Verify(repo => repo.WriteContactsForUser(userId, It.IsAny<List<Contact>>()), Times.Once);
+            mockUserService.Verify(service => service.UpdateUser(user), Times.Once);
         }
 
         [Fact]
-        public void DeleteContact_ShouldCallWriteContactsOnRepository()
+        public void DeleteUser_ShouldDeleteUserSuccessfully()
         {
             // Arrange
-            var mockContactRepository = new Mock<IContactRepository>();
-            var contactService = new ContactService(mockContactRepository.Object);
+            var mockUserService = new Mock<IUserService>();
 
-            var userId = "123";
-            var contactId = "1";
-            var contacts = new List<Contact>
-            {
-                new Contact { Id = contactId, Name = "John", Lastname = "Doe", PhoneNumber = "123456789" }
-            };
-
-            // Ställ in mocken att returnera en lista med kontakter
-            mockContactRepository.Setup(repo => repo.ReadContactsForUser(userId)).Returns(contacts);
+            var user = new DefaultUser { Id = "123", Name = "John", Lastname = "Doe" };
 
             // Act
-            contactService.DeleteContact(userId, contactId);
+            mockUserService.Object.DeleteUser(user);
 
             // Assert
-            mockContactRepository.Verify(repo => repo.WriteContactsForUser(userId, It.IsAny<List<Contact>>()), Times.Once);
+            mockUserService.Verify(service => service.DeleteUser(user), Times.Once);
         }
 
         [Fact]
-        public void ReadUserByEmail_ShouldReturnUserFromRepository()
+        public void ReadUserByEmail_ShouldReturnUser()
         {
             // Arrange
-            var mockUserRepository = new Mock<IUserRepository>();
-            var userService = new UserService(mockUserRepository.Object, null);
+            var mockUserService = new Mock<IUserService>();
 
-            var email = "test@example.com";
-            var user = new DefaultUser { Email = email, Name = "Test", Lastname = "User" };
+            var email = "john.doe@example.com";
+            var user = new DefaultUser { Email = email, Name = "John", Lastname = "Doe" };
 
-            // Ställ in mocken att returnera en användare för den givna e-postadressen
-            mockUserRepository.Setup(repo => repo.GetUserByEmail(email)).Returns(user);
+            mockUserService.Setup(service => service.ReadUserByEmail(email)).Returns(user);
 
             // Act
-            var result = userService.ReadUserByEmail(email);
+            var result = mockUserService.Object.ReadUserByEmail(email);
 
             // Assert
             Assert.Equal(user, result);
-            mockUserRepository.Verify(repo => repo.GetUserByEmail(email), Times.Once);
+            mockUserService.Verify(service => service.ReadUserByEmail(email), Times.Once);
         }
 
         [Fact]
-        public void ReadAllUsers_ShouldReturnUsersFromRepository()
+        public void ReadAllUsers_ShouldReturnAllUsers()
         {
             // Arrange
-            var mockUserRepository = new Mock<IUserRepository>();
-            var userService = new UserService(mockUserRepository.Object, null);
+            var mockUserService = new Mock<IUserService>();
 
             var users = new List<BaseUser>
             {
@@ -139,15 +126,27 @@ namespace Business.Tests.Mocking
                 new DefaultUser { Name = "Jane", Lastname = "Smith" }
             };
 
-            // Ställ in mocken att returnera en lista med användare
-            mockUserRepository.Setup(repo => repo.GetAllUsers()).Returns(users);
+            mockUserService.Setup(service => service.ReadAllUsers()).Returns(users);
 
             // Act
-            var result = userService.ReadAllUsers();
+            var result = mockUserService.Object.ReadAllUsers();
 
             // Assert
             Assert.Equal(users, result);
-            mockUserRepository.Verify(repo => repo.GetAllUsers(), Times.Once);
+            mockUserService.Verify(service => service.ReadAllUsers(), Times.Once);
+        }
+
+        [Fact]
+        public void EnsureExampleUserExists_ShouldEnsureUserSuccessfully()
+        {
+            // Arrange
+            var mockUserService = new Mock<IUserService>();
+
+            // Act
+            mockUserService.Object.EnsureExampleUserExists();
+
+            // Assert
+            mockUserService.Verify(service => service.EnsureExampleUserExists(), Times.Once);
         }
     }
 }

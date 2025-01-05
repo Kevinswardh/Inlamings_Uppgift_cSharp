@@ -1,10 +1,9 @@
-﻿using Business.Services;
-using Business.CoreFiles.Models.Contacts;
+﻿using Business.CoreFiles.Models.Contacts;
 using Business.Interfaces.Repositories;
+using Business.Logic._1_Services.UserService;
 using Moq;
 using Xunit;
 using System.Collections.Generic;
-using Business.Logic._1_Services.UserService;
 
 namespace Business.Tests.Mocking
 {
@@ -27,7 +26,6 @@ namespace Business.Tests.Mocking
                 new Contact { Name = "Jane", Lastname = "Smith", PhoneNumber = "987654321" }
             };
 
-            // Ställ in mocken att returnera kontakterna för det givna användar-ID:t
             mockContactRepository.Setup(repo => repo.ReadContactsForUser(userId)).Returns(contacts);
 
             // Act
@@ -48,7 +46,6 @@ namespace Business.Tests.Mocking
             var userId = "123";
             var contact = new Contact { Name = "John", Lastname = "Doe", PhoneNumber = "123456789" };
 
-            // Se till att ReadContactsForUser returnerar en tom lista
             mockContactRepository.Setup(repo => repo.ReadContactsForUser(userId)).Returns(new List<Contact>());
 
             // Act
@@ -72,7 +69,6 @@ namespace Business.Tests.Mocking
                 new Contact { Id = "1", Name = "John", Lastname = "Doe", PhoneNumber = "123456789" }
             };
 
-            // Se till att ReadContactsForUser returnerar en lista med kontakter
             mockContactRepository.Setup(repo => repo.ReadContactsForUser(userId)).Returns(contacts);
 
             // Act
@@ -96,7 +92,6 @@ namespace Business.Tests.Mocking
                 new Contact { Id = contactId, Name = "John", Lastname = "Doe", PhoneNumber = "123456789" }
             };
 
-            // Se till att ReadContactsForUser returnerar en lista med kontakter
             mockContactRepository.Setup(repo => repo.ReadContactsForUser(userId)).Returns(contacts);
 
             // Act
@@ -104,6 +99,95 @@ namespace Business.Tests.Mocking
 
             // Assert
             mockContactRepository.Verify(repo => repo.WriteContactsForUser(userId, It.IsAny<List<Contact>>()), Times.Once);
+        }
+
+        [Fact]
+        public void AddFavorite_ShouldCallWriteFavoritesOnRepository()
+        {
+            // Arrange
+            var mockContactRepository = new Mock<IContactRepository>();
+            var contactService = new ContactService(mockContactRepository.Object);
+
+            var userId = "123";
+            var favoriteContact = new FavoriteContact { Id = "1", Name = "Favorite John" };
+
+            mockContactRepository.Setup(repo => repo.ReadFavoritesForUser(userId)).Returns(new List<FavoriteContact>());
+
+            // Act
+            contactService.AddFavorite(userId, favoriteContact);
+
+            // Assert
+            mockContactRepository.Verify(repo => repo.WriteFavoritesForUser(userId, It.IsAny<List<FavoriteContact>>()), Times.Once);
+        }
+
+        [Fact]
+        public void UpdateFavorite_ShouldCallWriteFavoritesOnRepository()
+        {
+            // Arrange
+            var mockContactRepository = new Mock<IContactRepository>();
+            var contactService = new ContactService(mockContactRepository.Object);
+
+            var userId = "123";
+            var favoriteContact = new FavoriteContact { Id = "1", Name = "Updated Favorite" };
+            var favorites = new List<FavoriteContact>
+            {
+                new FavoriteContact { Id = "1", Name = "Favorite John" }
+            };
+
+            mockContactRepository.Setup(repo => repo.ReadFavoritesForUser(userId)).Returns(favorites);
+
+            // Act
+            contactService.UpdateFavorite(userId, favoriteContact);
+
+            // Assert
+            mockContactRepository.Verify(repo => repo.WriteFavoritesForUser(userId, It.IsAny<List<FavoriteContact>>()), Times.Once);
+        }
+
+        [Fact]
+        public void GetAllFavorites_ShouldReturnFavoritesFromRepository()
+        {
+            // Arrange
+            var mockContactRepository = new Mock<IContactRepository>();
+            var contactService = new ContactService(mockContactRepository.Object);
+
+            var userId = "123";
+            var favorites = new List<FavoriteContact>
+            {
+                new FavoriteContact { Id = "1", Name = "Favorite John" },
+                new FavoriteContact { Id = "2", Name = "Favorite Jane" }
+            };
+
+            mockContactRepository.Setup(repo => repo.ReadFavoritesForUser(userId)).Returns(favorites);
+
+            // Act
+            var result = contactService.GetAllFavorites(userId);
+
+            // Assert
+            Assert.Equal(favorites, result);
+            mockContactRepository.Verify(repo => repo.ReadFavoritesForUser(userId), Times.Once);
+        }
+
+        [Fact]
+        public void RemoveFavorite_ShouldCallWriteFavoritesOnRepository()
+        {
+            // Arrange
+            var mockContactRepository = new Mock<IContactRepository>();
+            var contactService = new ContactService(mockContactRepository.Object);
+
+            var userId = "123";
+            var favoriteId = "1";
+            var favorites = new List<FavoriteContact>
+            {
+                new FavoriteContact { Id = favoriteId, Name = "Favorite John" }
+            };
+
+            mockContactRepository.Setup(repo => repo.ReadFavoritesForUser(userId)).Returns(favorites);
+
+            // Act
+            contactService.RemoveFavorite(userId, favoriteId);
+
+            // Assert
+            mockContactRepository.Verify(repo => repo.WriteFavoritesForUser(userId, It.IsAny<List<FavoriteContact>>()), Times.Once);
         }
     }
 }

@@ -11,20 +11,13 @@ using Business.CoreFiles.Models.Users.Roles;
 
 namespace Business.Tests
 {
-    /// <summary>
-    /// Enhetstester för UserService.
-    /// </summary>
     public class UserServiceTests
     {
         private const string TestFilePath = "test_users.json";
         private UserService _userService;
 
-        /// <summary>
-        /// Konstruktor som initierar UserService och rensar testfilen före varje test.
-        /// </summary>
         public UserServiceTests()
         {
-            // Rensa testfilen före varje test
             if (File.Exists(TestFilePath))
             {
                 File.Delete(TestFilePath);
@@ -38,18 +31,15 @@ namespace Business.Tests
         [Fact]
         public void CreateUser_ShouldCreateUserSuccessfully()
         {
-            // Arrange
-            string name = "John";
-            string lastname = "Doe";
-            string email = "john.doe@example.com";
-            string password = "password123";
-            string role = "Default";
+            var name = "John";
+            var lastname = "Doe";
+            var email = "john.doe@example.com";
+            var password = "password123";
+            var role = "Default";
 
-            // Act
             _userService.CreateUser(name, lastname, email, password, role);
             var createdUser = _userService.ReadUserByEmail(email);
 
-            // Assert
             Assert.NotNull(createdUser);
             Assert.Equal(name, createdUser.Name);
             Assert.Equal(lastname, createdUser.Lastname);
@@ -59,7 +49,6 @@ namespace Business.Tests
         [Fact]
         public void CreateUser_WithBaseUser_ShouldCreateUserSuccessfully()
         {
-            // Arrange
             var user = new DefaultUser
             {
                 Id = "1",
@@ -68,11 +57,9 @@ namespace Business.Tests
                 Email = "jane.smith@example.com"
             };
 
-            // Act
             _userService.CreateUser(user);
             var createdUser = _userService.ReadUserByEmail("jane.smith@example.com");
 
-            // Assert
             Assert.NotNull(createdUser);
             Assert.Equal("Jane", createdUser.Name);
             Assert.Equal("Smith", createdUser.Lastname);
@@ -81,7 +68,6 @@ namespace Business.Tests
         [Fact]
         public void ReadUser_ShouldReturnUserById()
         {
-            // Arrange
             var user = new DefaultUser
             {
                 Id = "123",
@@ -91,10 +77,8 @@ namespace Business.Tests
             };
             _userService.CreateUser(user);
 
-            // Act
             var retrievedUser = _userService.ReadUser("123");
 
-            // Assert
             Assert.NotNull(retrievedUser);
             Assert.Equal("Alice", retrievedUser.Name);
         }
@@ -102,7 +86,6 @@ namespace Business.Tests
         [Fact]
         public void UpdateUser_ShouldUpdateExistingUser()
         {
-            // Arrange
             var user = new DefaultUser
             {
                 Id = "1",
@@ -112,12 +95,10 @@ namespace Business.Tests
             };
             _userService.CreateUser(user);
 
-            // Act
             user.Name = "CharlieUpdated";
             _userService.UpdateUser(user);
             var updatedUser = _userService.ReadUserByEmail("charlie.green@example.com");
 
-            // Assert
             Assert.NotNull(updatedUser);
             Assert.Equal("CharlieUpdated", updatedUser.Name);
         }
@@ -125,7 +106,6 @@ namespace Business.Tests
         [Fact]
         public void DeleteUser_ShouldRemoveUser()
         {
-            // Arrange
             var user = new DefaultUser
             {
                 Id = "2",
@@ -135,27 +115,22 @@ namespace Business.Tests
             };
             _userService.CreateUser(user);
 
-            // Act
             _userService.DeleteUser(user);
             var deletedUser = _userService.ReadUserByEmail("david.white@example.com");
 
-            // Assert
             Assert.Null(deletedUser);
         }
 
         [Fact]
         public void ReadAllUsers_ShouldReturnAllUsers()
         {
-            // Arrange
             var user1 = new DefaultUser { Id = "1", Name = "Emma", Email = "emma@example.com" };
             var user2 = new DefaultUser { Id = "2", Name = "Frank", Email = "frank@example.com" };
             _userService.CreateUser(user1);
             _userService.CreateUser(user2);
 
-            // Act
             var users = _userService.ReadAllUsers();
 
-            // Assert
             Assert.Equal(2, users.Count);
             Assert.Contains(users, u => u.Email == "emma@example.com");
             Assert.Contains(users, u => u.Email == "frank@example.com");
@@ -164,13 +139,21 @@ namespace Business.Tests
         [Fact]
         public void EnsureExampleUserExists_ShouldCreateExampleUserIfNotExists()
         {
-            // Act
             _userService.EnsureExampleUserExists();
             var exampleUser = _userService.ReadUserByEmail("x@x.xx");
 
-            // Assert
             Assert.NotNull(exampleUser);
             Assert.Equal("ExampleName", exampleUser.Name);
+        }
+
+        [Fact]
+        public void EnsureExampleUserExists_ShouldNotDuplicateExampleUser()
+        {
+            _userService.EnsureExampleUserExists();
+            _userService.EnsureExampleUserExists();
+            var users = _userService.ReadAllUsers();
+
+            Assert.Single(users.Where(u => u.Email == "x@x.xx"));
         }
     }
 }
