@@ -5,13 +5,18 @@
       xmlns:converters="clr-namespace:WPF_Mvvm_Version.Converters"
       Title="FavoritesPage">
 
+    <!-- Resurser -->
     <Page.Resources>
+        <!-- Konverterar booleanvärde till Visibility för dynamisk synlighet -->
         <converters:BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter" />
     </Page.Resources>
 
+    <!-- Huvudlayout -->
     <Grid Background="#1f1f1f" Margin="0">
         <StackPanel>
+            <!-- Översta raden: Lägg till-knapp och rubrik -->
             <StackPanel Orientation="Horizontal" HorizontalAlignment="Left" Margin="10">
+                <!-- Knapp för att lägga till ny favorit -->
                 <Button Content="+" 
                         FontSize="35"
                         Padding="5 -10 5 0"
@@ -20,8 +25,8 @@
                         Margin="0,0,0,10" 
                         Background="#2D4254" 
                         Foreground="White"
-                       
                         Command="{Binding AddFavoriteCommand}"/>
+                <!-- Rubrik för sidan -->
                 <TextBlock Text="Favorite page" 
                            Foreground="#4fb5f9" 
                            FontSize="24" 
@@ -30,21 +35,26 @@
                            Margin="150,0,0,0"/>
             </StackPanel>
 
+            <!-- Innehållssektion -->
             <ScrollViewer VerticalScrollBarVisibility="Hidden"
                           HorizontalScrollBarVisibility="Disabled"
                           PanningMode="VerticalOnly"
                           MaxHeight="400">
+                <!-- Lista över favoriter -->
                 <ItemsControl ItemsSource="{Binding Favorites}" Margin="0,10,0,0">
                     <ItemsControl.ItemTemplate>
                         <DataTemplate>
+                            <!-- Kort för varje favorit -->
                             <Border Background="#353739" CornerRadius="10" Margin="0,5" Padding="10">
                                 <StackPanel>
                                     <Grid>
                                         <Grid.ColumnDefinitions>
+                                            <!-- Två kolumner: en för detaljer och en för knappar -->
                                             <ColumnDefinition Width="*" />
                                             <ColumnDefinition Width="Auto" />
                                         </Grid.ColumnDefinitions>
 
+                                        <!-- Detaljer för favoriten -->
                                         <StackPanel Orientation="Vertical" Grid.Column="0">
                                             <TextBlock Text="Name:" Foreground="#AAAAAA" FontWeight="Bold"/>
                                             <TextBlock Text="{Binding Favorite.Fullname}" Foreground="White" FontSize="16" Margin="0,0,0,10"/>
@@ -52,7 +62,9 @@
                                             <TextBlock Text="{Binding Favorite.PhoneNumber}" Foreground="White" FontSize="14" Margin="0,0,0,10"/>
                                         </StackPanel>
 
+                                        <!-- Knappar för att redigera och ta bort -->
                                         <StackPanel Orientation="Horizontal" Grid.Column="1" HorizontalAlignment="Right" VerticalAlignment="Center">
+                                            <!-- Redigera-knapp -->
                                             <Button Content="Edit"
                                                     Width="70"
                                                     Height="30"
@@ -62,6 +74,7 @@
                                                     BorderBrush="#273E51"
                                                     Command="{Binding DataContext.EditFavoriteCommand, RelativeSource={RelativeSource AncestorType=ItemsControl}}"
                                                     CommandParameter="{Binding}" />
+                                            <!-- Ta bort-knapp -->
                                             <Button Content="Delete"
                                                     Width="70"
                                                     Height="30"
@@ -74,6 +87,7 @@
                                         </StackPanel>
                                     </Grid>
 
+                                    <!-- Sektion för ytterligare information -->
                                     <StackPanel Visibility="{Binding IsMoreInfoVisible, Converter={StaticResource BooleanToVisibilityConverter}}" Margin="0,10,0,0">
                                         <TextBlock Text="Address:" Foreground="#AAAAAA" FontWeight="Bold"/>
                                         <TextBlock Text="{Binding Favorite.Address}" Foreground="White" FontSize="14" Margin="0,0,0,10"/>
@@ -83,17 +97,16 @@
                                         <TextBlock Text="{Binding Favorite.Notes}" Foreground="White" FontSize="14" Margin="0,0,0,10"/>
                                     </StackPanel>
 
-
+                                    <!-- Knapp för att visa/dölja mer information -->
                                     <Button Content="{Binding ToggleButtonText}"
-        Width="100"
-        Height="30"
-         Style="{StaticResource OrangeButtonStyle}"
-        FontSize="14"
-
-        BorderBrush="#273E51"
-        Margin="0,10,0,0"
-        Command="{Binding DataContext.ToggleMoreInfoCommand, RelativeSource={RelativeSource AncestorType=ItemsControl}}"
-        CommandParameter="{Binding}" />
+                                            Width="100"
+                                            Height="30"
+                                            Style="{StaticResource OrangeButtonStyle}"
+                                            FontSize="14"
+                                            BorderBrush="#273E51"
+                                            Margin="0,10,0,0"
+                                            Command="{Binding DataContext.ToggleMoreInfoCommand, RelativeSource={RelativeSource AncestorType=ItemsControl}}"
+                                            CommandParameter="{Binding}" />
                                 </StackPanel>
                             </Border>
                         </DataTemplate>

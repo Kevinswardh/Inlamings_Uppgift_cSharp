@@ -12,21 +12,31 @@ using WPF_Mvvm_Version.Views.ContactWindows.Pages;
 
 namespace WPF_Mvvm_Version.ViewModels.ContactWindows.Pages.FavoritesPages
 {
+    /// <summary>
+    /// ViewModel för att hantera logiken bakom sidan för att lägga till en ny favoritkontakt (AddFavoritePage).
+    /// </summary>
     public class AddFavoritePageViewModel : ObservableObject
     {
-        private readonly BaseUser _user;
-        private readonly ContactService _contactService;
+        private readonly BaseUser _user; // Den aktuella användaren
+        private readonly ContactService _contactService; // Tjänst för att hantera kontakter
 
+        /// <summary>
+        /// Initierar ViewModel med användare och ContactService.
+        /// </summary>
+        /// <param name="user">Den aktuella användaren.</param>
+        /// <param name="contactService">Tjänst för kontaktoperationer.</param>
+        /// <exception cref="ArgumentNullException">Kastas om user eller contactService är null.</exception>
         public AddFavoritePageViewModel(BaseUser user, ContactService contactService)
         {
             _user = user ?? throw new ArgumentNullException(nameof(user));
             _contactService = contactService ?? throw new ArgumentNullException(nameof(contactService));
 
+            // Initiera kommandon
             SaveCommand = new RelayCommand(SaveFavorite);
             CancelCommand = new RelayCommand(Cancel);
         }
 
-        // Bindable properties for inputs
+        // Bindbara egenskaper kopplade till UI
         public string Name { get; set; }
         public string Lastname { get; set; }
         public string PhoneNumber { get; set; }
@@ -34,11 +44,16 @@ namespace WPF_Mvvm_Version.ViewModels.ContactWindows.Pages.FavoritesPages
         public string Email { get; set; }
         public string Notes { get; set; }
 
+        // Kommandon kopplade till knappar
         public IRelayCommand SaveCommand { get; }
         public IRelayCommand CancelCommand { get; }
 
+        /// <summary>
+        /// Sparar en ny favoritkontakt och navigerar tillbaka till FavoritesPage.
+        /// </summary>
         private void SaveFavorite()
         {
+            // Skapa en ny favoritkontakt med inmatade värden
             var favoriteContact = new FavoriteContact
             {
                 Name = Name,
@@ -47,21 +62,25 @@ namespace WPF_Mvvm_Version.ViewModels.ContactWindows.Pages.FavoritesPages
                 Address = Address,
                 Email = Email,
                 Notes = Notes,
-                Id = GuidGenerator.GenerateGuid()
+                Id = GuidGenerator.GenerateGuid() // Genererar unikt ID
             };
 
+            // Lägg till favoriten i ContactService
             _contactService.AddFavorite(_user.Id, favoriteContact);
 
+            // Visa bekräftelsemeddelande
             MessageBox.Show("Favorite added successfully.", "Success", MessageBoxButton.OK, MessageBoxImage.Information);
 
-            // Navigate back to FavoritesPage
+            // Navigera tillbaka till FavoritesPage
             var contactWindow = Application.Current.Windows.OfType<ContactWindow>().FirstOrDefault();
             contactWindow?.ContentFrame.Navigate(new FavoritesPage(_user, _contactService));
         }
 
+        /// <summary>
+        /// Avbryter operationen och navigerar tillbaka till FavoritesPage utan att spara.
+        /// </summary>
         private void Cancel()
         {
-            // Navigate back to FavoritesPage without saving
             var contactWindow = Application.Current.Windows.OfType<ContactWindow>().FirstOrDefault();
             contactWindow?.ContentFrame.Navigate(new FavoritesPage(_user, _contactService));
         }

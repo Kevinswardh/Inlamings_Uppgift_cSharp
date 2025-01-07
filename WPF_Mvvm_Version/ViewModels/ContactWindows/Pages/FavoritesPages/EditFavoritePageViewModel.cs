@@ -11,19 +11,28 @@ using WPF_Mvvm_Version.Views.ContactWindows.Pages;
 
 namespace WPF_Mvvm_Version.ViewModels.ContactWindows.Pages.FavoritesPages
 {
+    /// <summary>
+    /// ViewModel för redigering av favoritkontakter i EditFavoritePage.
+    /// </summary>
     public class EditFavoritePageViewModel : ObservableObject
     {
-        private readonly ContactService _contactService;
-        private readonly BaseUser _user;
-        private readonly FavoriteContact _favorite;
+        private readonly ContactService _contactService; // Hanterar kontaktoperationer.
+        private readonly BaseUser _user; // Representerar den aktuella användaren.
+        private readonly FavoriteContact _favorite; // Representerar den valda favoriten.
 
+        /// <summary>
+        /// Initierar ViewModel med en favorit, användare och ContactService.
+        /// </summary>
+        /// <param name="favorite">Favoritkontakt som ska redigeras.</param>
+        /// <param name="user">Den aktuella användaren.</param>
+        /// <param name="contactService">Tjänst för hantering av kontakter.</param>
         public EditFavoritePageViewModel(FavoriteContact favorite, BaseUser user, ContactService contactService)
         {
-            _favorite = favorite;
-            _user = user;
-            _contactService = contactService;
+            _favorite = favorite ?? throw new ArgumentNullException(nameof(favorite));
+            _user = user ?? throw new ArgumentNullException(nameof(user));
+            _contactService = contactService ?? throw new ArgumentNullException(nameof(contactService));
 
-            // Initialize fields
+            // Initiera egenskaper med favoritens nuvarande data
             Name = favorite.Name;
             Lastname = favorite.Lastname;
             PhoneNumber = favorite.PhoneNumber;
@@ -31,12 +40,12 @@ namespace WPF_Mvvm_Version.ViewModels.ContactWindows.Pages.FavoritesPages
             Email = favorite.Email;
             Notes = favorite.Notes;
 
-            // Initialize commands
+            // Initiera kommandon
             SaveCommand = new RelayCommand(Save);
             CancelCommand = new RelayCommand(Cancel);
         }
 
-        // Properties bound to the UI
+        // Bindbara egenskaper kopplade till UI
         public string Name { get; set; }
         public string Lastname { get; set; }
         public string PhoneNumber { get; set; }
@@ -44,12 +53,16 @@ namespace WPF_Mvvm_Version.ViewModels.ContactWindows.Pages.FavoritesPages
         public string Email { get; set; }
         public string Notes { get; set; }
 
+        // Kommandon
         public ICommand SaveCommand { get; }
         public ICommand CancelCommand { get; }
 
+        /// <summary>
+        /// Sparar ändringarna till favoritkontakten och navigerar tillbaka till FavoritesPage.
+        /// </summary>
         private void Save()
         {
-            // Update favorite object
+            // Uppdatera favoritens data
             _favorite.Name = Name;
             _favorite.Lastname = Lastname;
             _favorite.PhoneNumber = PhoneNumber;
@@ -57,20 +70,22 @@ namespace WPF_Mvvm_Version.ViewModels.ContactWindows.Pages.FavoritesPages
             _favorite.Email = Email;
             _favorite.Notes = Notes;
 
-            // Update favorite in the ContactService
+            // Uppdatera favoritkontakten via ContactService
             _contactService.UpdateFavorite(_user.Id, _favorite);
 
-            // Confirmation message
+            // Visa bekräftelsemeddelande
             MessageBox.Show("Favorite updated successfully.", "Update Successful", MessageBoxButton.OK, MessageBoxImage.Information);
 
-            // Navigate back to FavoritesPage
+            // Navigera tillbaka till FavoritesPage
             var contactWindow = Application.Current.Windows.OfType<ContactWindow>().FirstOrDefault();
             contactWindow?.ContentFrame.Navigate(new FavoritesPage(_user, _contactService));
         }
 
+        /// <summary>
+        /// Avbryter redigeringen och navigerar tillbaka till FavoritesPage utan att spara.
+        /// </summary>
         private void Cancel()
         {
-            // Navigate back to FavoritesPage without saving
             var contactWindow = Application.Current.Windows.OfType<ContactWindow>().FirstOrDefault();
             contactWindow?.ContentFrame.Navigate(new FavoritesPage(_user, _contactService));
         }

@@ -4,11 +4,12 @@
       xmlns:vm="clr-namespace:WPF_Mvvm_Version.ViewModels.ContactWindows.Pages.FavoritesPages"
       Title="EditFavoritePage">
 
-
-
+    <!-- Huvudlayout -->
     <Grid Background="#1F1F1F">
+        <!-- Yttergräns för sidan med bakgrundsfärg och rundade hörn -->
         <Border Background="#353739" CornerRadius="20" Margin="20" Padding="20">
             <StackPanel>
+                <!-- Sidrubrik -->
                 <TextBlock Text="Edit Favorite" 
                            Foreground=" #4fb5f9" 
                            FontSize="26" 
@@ -16,30 +17,79 @@
                            HorizontalAlignment="Center" 
                            Margin="0,0,0,20"/>
 
-                <!-- Input Fields -->
+                <!-- Inmatningsfält för redigering -->
                 <StackPanel Margin="20">
+                    <!-- Namn -->
                     <Label Content="Name" Foreground="White" Margin="0,5,0,2"/>
-                    <TextBox Text="{Binding Name}" Background="#1F1F1F" Foreground="White" BorderBrush="#2A2A2A" Height="30" FontSize="14"/>
+                    <TextBox Text="{Binding Name}" 
+                             Background="#1F1F1F" 
+                             Foreground="White" 
+                             BorderBrush="#2A2A2A" 
+                             Height="30" 
+                             FontSize="14"/>
 
+                    <!-- Efternamn -->
                     <Label Content="Lastname" Foreground="White" Margin="0,5,0,2"/>
-                    <TextBox Text="{Binding Lastname}" Background="#1F1F1F" Foreground="White" BorderBrush="#2A2A2A" Height="30" FontSize="14"/>
+                    <TextBox Text="{Binding Lastname}" 
+                             Background="#1F1F1F" 
+                             Foreground="White" 
+                             BorderBrush="#2A2A2A" 
+                             Height="30" 
+                             FontSize="14"/>
 
+                    <!-- Telefonnummer -->
                     <Label Content="Phone Number" Foreground="White" Margin="0,5,0,2"/>
-                    <TextBox Text="{Binding PhoneNumber}" Background="#1F1F1F" Foreground="White" BorderBrush="#2A2A2A" Height="30" FontSize="14"/>
+                    <TextBox Text="{Binding PhoneNumber}" 
+                             Background="#1F1F1F" 
+                             Foreground="White" 
+                             BorderBrush="#2A2A2A" 
+                             Height="30" 
+                             FontSize="14"/>
 
+                    <!-- Adress -->
                     <Label Content="Address" Foreground="White" Margin="0,5,0,2"/>
-                    <TextBox Text="{Binding Address}" Background="#1F1F1F" Foreground="White" BorderBrush="#2A2A2A" Height="30" FontSize="14"/>
+                    <TextBox Text="{Binding Address}" 
+                             Background="#1F1F1F" 
+                             Foreground="White" 
+                             BorderBrush="#2A2A2A" 
+                             Height="30" 
+                             FontSize="14"/>
 
+                    <!-- E-post -->
                     <Label Content="Email" Foreground="White" Margin="0,5,0,2"/>
-                    <TextBox Text="{Binding Email}" Background="#1F1F1F" Foreground="White" BorderBrush="#2A2A2A" Height="30" FontSize="14"/>
+                    <TextBox Text="{Binding Email}" 
+                             Background="#1F1F1F" 
+                             Foreground="White" 
+                             BorderBrush="#2A2A2A" 
+                             Height="30" 
+                             FontSize="14"/>
 
+                    <!-- Anteckningar -->
                     <Label Content="Notes" Foreground="White" Margin="0,5,0,2"/>
-                    <TextBox Text="{Binding Notes}" Background="#1F1F1F" Foreground="White" BorderBrush="#2A2A2A" Height="60" FontSize="14" TextWrapping="Wrap"/>
+                    <TextBox Text="{Binding Notes}" 
+                             Background="#1F1F1F" 
+                             Foreground="White" 
+                             BorderBrush="#2A2A2A" 
+                             Height="60" 
+                             FontSize="14" 
+                             TextWrapping="Wrap"/>
                 </StackPanel>
 
+                <!-- Knappar för att spara eller avbryta -->
                 <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="0,20,0,0">
-                    <Button Content="Save" Style="{StaticResource OrangeButtonStyle}" Width="100" Height="40" Margin="0,0,20,0" Command="{Binding SaveCommand}"/>
-                    <Button Content="Cancel" Style="{StaticResource OrangeButtonStyle}" Width="100" Height="40" Command="{Binding CancelCommand}"/>
+                    <!-- Spara-knapp -->
+                    <Button Content="Save" 
+                            Style="{StaticResource OrangeButtonStyle}" 
+                            Width="100" 
+                            Height="40" 
+                            Margin="0,0,20,0" 
+                            Command="{Binding SaveCommand}"/>
+                    <!-- Avbryt-knapp -->
+                    <Button Content="Cancel" 
+                            Style="{StaticResource OrangeButtonStyle}" 
+                            Width="100" 
+                            Height="40" 
+                            Command="{Binding CancelCommand}"/>
                 </StackPanel>
             </StackPanel>
         </Border>

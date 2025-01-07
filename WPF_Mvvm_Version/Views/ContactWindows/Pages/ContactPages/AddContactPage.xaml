@@ -4,12 +4,13 @@
       xmlns:vm="clr-namespace:WPF_Mvvm_Version.ViewModels.ContactWindows.Pages.ContactPages"
       Title="AddContactPage">
 
-   
-
+    <!-- Huvudlayout -->
     <Grid Background="#1f1f1f">
+        <!-- Yttre gräns för sidan -->
         <Border Background="#353739" CornerRadius="20" Margin="20" Padding="10">
             <StackPanel Margin="20">
-                <!-- Header -->
+
+                <!-- Rubrik för sidan -->
                 <TextBlock Text="Add Contact"
                            Foreground="#4fb5f9"
                            FontSize="26"
@@ -17,40 +18,75 @@
                            HorizontalAlignment="Center"
                            Margin="0,0,0,20"/>
 
-                <!-- Input Fields -->
+                <!-- Inmatningsfält -->
                 <StackPanel>
+                    <!-- Namn -->
                     <TextBlock Text="Name:" Foreground="White" Margin="0,0,0,5"/>
                     <TextBox Text="{Binding Contact.Name, UpdateSourceTrigger=PropertyChanged}" 
-                             Background="#1f1f1f" Foreground="White" BorderBrush="#2A2A2A" Margin="0,0,0,10"/>
+                             Background="#1f1f1f" 
+                             Foreground="White" 
+                             BorderBrush="#2A2A2A" 
+                             Margin="0,0,0,10"/>
 
+                    <!-- Efternamn -->
                     <TextBlock Text="Lastname:" Foreground="White" Margin="0,0,0,5"/>
                     <TextBox Text="{Binding Contact.Lastname, UpdateSourceTrigger=PropertyChanged}" 
-                             Background="#1f1f1f" Foreground="White" BorderBrush="#2A2A2A" Margin="0,0,0,10"/>
+                             Background="#1f1f1f" 
+                             Foreground="White" 
+                             BorderBrush="#2A2A2A" 
+                             Margin="0,0,0,10"/>
 
+                    <!-- Telefonnummer -->
                     <TextBlock Text="Phone Number:" Foreground="White" Margin="0,0,0,5"/>
                     <TextBox Text="{Binding Contact.PhoneNumber, UpdateSourceTrigger=PropertyChanged}" 
-                             Background="#1f1f1f" Foreground="White" BorderBrush="#2A2A2A" Margin="0,0,0,10"/>
+                             Background="#1f1f1f" 
+                             Foreground="White" 
+                             BorderBrush="#2A2A2A" 
+                             Margin="0,0,0,10"/>
 
+                    <!-- Adress -->
                     <TextBlock Text="Address:" Foreground="White" Margin="0,0,0,5"/>
                     <TextBox Text="{Binding Contact.Address, UpdateSourceTrigger=PropertyChanged}" 
-                             Background="#1f1f1f" Foreground="White" BorderBrush="#2A2A2A" Margin="0,0,0,10"/>
+                             Background="#1f1f1f" 
+                             Foreground="White" 
+                             BorderBrush="#2A2A2A" 
+                             Margin="0,0,0,10"/>
 
+                    <!-- E-post -->
                     <TextBlock Text="Email:" Foreground="White" Margin="0,0,0,5"/>
                     <TextBox Text="{Binding Contact.Email, UpdateSourceTrigger=PropertyChanged}" 
-                             Background="#1f1f1f" Foreground="White" BorderBrush="#2A2A2A" Margin="0,0,0,10"/>
+                             Background="#1f1f1f" 
+                             Foreground="White" 
+                             BorderBrush="#2A2A2A" 
+                             Margin="0,0,0,10"/>
 
+                    <!-- Anteckningar -->
                     <TextBlock Text="Notes:" Foreground="White" Margin="0,0,0,5"/>
                     <TextBox Text="{Binding Contact.Notes, UpdateSourceTrigger=PropertyChanged}" 
-                             Background="#1f1f1f" Foreground="White" BorderBrush="#2A2A2A" Margin="0,0,0,10" AcceptsReturn="True" Height="60"/>
+                             Background="#1f1f1f" 
+                             Foreground="White" 
+                             BorderBrush="#2A2A2A" 
+                             Margin="0,0,0,10" 
+                             AcceptsReturn="True" 
+                             Height="60"/>
                 </StackPanel>
 
-                <!-- Buttons -->
+                <!-- Knappar -->
                 <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="0,20,0,0">
-                    <Button Content="Save" Style="{StaticResource OrangeButtonStyle}" Width="100" Height="40" Margin="0,0,20,0" 
-                             BorderBrush="#273E51"
+                    <!-- Spara-knapp -->
+                    <Button Content="Save" 
+                            Style="{StaticResource OrangeButtonStyle}" 
+                            Width="100" 
+                            Height="40" 
+                            Margin="0,0,20,0" 
+                            BorderBrush="#273E51"
                             Command="{Binding SaveCommand}" />
-                    <Button Content="Cancel" Style="{StaticResource OrangeButtonStyle}" Width="100" Height="40" 
-                             BorderBrush="#FF5555"
+                    <!-- Avbryt-knapp -->
+                    <Button Content="Cancel" 
+                            Style="{StaticResource OrangeButtonStyle}" 
+                            Width="100" 
+                            Height="40" 
+                            BorderBrush="#FF5555"
                             Command="{Binding CancelCommand}" />
                 </StackPanel>
             </StackPanel>

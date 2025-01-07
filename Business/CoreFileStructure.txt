@@ -1,0 +1,38 @@
+﻿CoreFiles/
+│
+├── Crud/
+│   ├── ICreate.cs
+│   ├── IRead.cs
+│   ├── IUpdate.cs
+│   └── IDelete.cs
+│
+├── Databases/
+│   ├── JsonFileDb/
+│   │   └── JsonDb.json
+│
+├── Events/
+│   └── UserEvents.cs
+│
+├── Factory/
+│   ├── Interfaces/
+│   │   ├── IUserCreate.cs
+│   │   └── IExampleUserCreate.cs
+│   │
+│   ├── ExampleUserCreate.cs
+│   └── UserCreate.cs
+│
+├── Helpers/
+│   ├── PasswordHash.cs
+│   └── GuidGenerator.cs
+│
+├── Models/
+│   ├── Contacts/
+│   │   ├── Contact.cs
+│   │   └── FavoriteContact.cs
+│   │
+│   └── Users/
+│       ├── Roles/
+│       │   ├── AdminRole.cs
+│       │   └── DefaultRole.cs
+│       │
+│       └── BaseUser.cs

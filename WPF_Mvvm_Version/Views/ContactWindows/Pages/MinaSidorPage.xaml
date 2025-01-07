@@ -4,7 +4,9 @@
       xmlns:vm="clr-namespace:WPF_Mvvm_Version.ViewModels.ContactWindows.Pages"
       Title="MinaSidorPage">
 
+    <!-- Huvudlayout -->
     <Grid Background="#1F1F1F">
+        <!-- Yttre gräns med rundade hörn och padding -->
         <Border Background="#353739" CornerRadius="20" Margin="20" Padding="10">
             <StackPanel Margin="20">
                 <!-- Header -->
@@ -14,13 +16,32 @@
                            FontWeight="Bold" 
                            HorizontalAlignment="Center" 
                            Margin="0,0,0,20"/>
-                <!-- User Details -->
-                <TextBlock Text="{Binding UserDetails}" Foreground="White" FontSize="16" Margin="0,0,0,20" TextWrapping="Wrap"/>
 
-                <!-- Buttons -->
+                <!-- Användarinformation -->
+                <TextBlock Text="{Binding UserDetails}" 
+                           Foreground="White" 
+                           FontSize="16" 
+                           Margin="0,0,0,20" 
+                           TextWrapping="Wrap"/>
+
+                <!-- Knappar -->
                 <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="0,80,0,0">
-                    <Button Content="Edit" Style="{StaticResource OrangeButtonStyle}" Width="100" Height="40" Margin="0,0,60,0"  Command="{Binding EditUserCommand}"/>
-                    <Button Content="Delete" Style="{StaticResource OrangeButtonStyle}"  Width="100" Height="40" Background="#1F1F1F" Foreground="Red" BorderBrush="#FF5555" Command="{Binding DeleteUserCommand}"/>
+                    <!-- Redigera-knapp -->
+                    <Button Content="Edit" 
+                            Style="{StaticResource OrangeButtonStyle}" 
+                            Width="100" 
+                            Height="40" 
+                            Margin="0,0,60,0"  
+                            Command="{Binding EditUserCommand}"/>
+                    <!-- Ta bort-knapp -->
+                    <Button Content="Delete" 
+                            Style="{StaticResource OrangeButtonStyle}"  
+                            Width="100" 
+                            Height="40" 
+                            Background="#1F1F1F" 
+                            Foreground="Red" 
+                            BorderBrush="#FF5555" 
+                            Command="{Binding DeleteUserCommand}"/>
                 </StackPanel>
             </StackPanel>
         </Border>

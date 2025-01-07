@@ -15,7 +15,7 @@ namespace Business.Tests.Mocking
         [Fact]
         public void GetAllContacts_ShouldReturnContactsFromRepository()
         {
-            // Arrange
+            // Arrange: Mocka IContactRepository och förbered kontaktdata för en användare.
             var mockContactRepository = new Mock<IContactRepository>();
             var contactService = new ContactService(mockContactRepository.Object);
 
@@ -28,10 +28,10 @@ namespace Business.Tests.Mocking
 
             mockContactRepository.Setup(repo => repo.ReadContactsForUser(userId)).Returns(contacts);
 
-            // Act
+            // Act: Hämta alla kontakter för användaren.
             var result = contactService.GetAllContacts(userId);
 
-            // Assert
+            // Assert: Verifiera att kontakterna returneras korrekt och att metoden anropades en gång.
             Assert.Equal(contacts, result);
             mockContactRepository.Verify(repo => repo.ReadContactsForUser(userId), Times.Once);
         }
@@ -39,7 +39,7 @@ namespace Business.Tests.Mocking
         [Fact]
         public void CreateContact_ShouldCallWriteContactsOnRepository()
         {
-            // Arrange
+            // Arrange: Mocka IContactRepository och skapa kontaktdata.
             var mockContactRepository = new Mock<IContactRepository>();
             var contactService = new ContactService(mockContactRepository.Object);
 
@@ -48,17 +48,17 @@ namespace Business.Tests.Mocking
 
             mockContactRepository.Setup(repo => repo.ReadContactsForUser(userId)).Returns(new List<Contact>());
 
-            // Act
+            // Act: Skapa en ny kontakt för användaren.
             contactService.CreateContact(userId, contact);
 
-            // Assert
+            // Assert: Verifiera att WriteContacts-metoden anropades en gång.
             mockContactRepository.Verify(repo => repo.WriteContactsForUser(userId, It.IsAny<List<Contact>>()), Times.Once);
         }
 
         [Fact]
         public void UpdateContact_ShouldCallWriteContactsOnRepository()
         {
-            // Arrange
+            // Arrange: Mocka IContactRepository och förbered kontaktdata att uppdatera.
             var mockContactRepository = new Mock<IContactRepository>();
             var contactService = new ContactService(mockContactRepository.Object);
 
@@ -71,17 +71,17 @@ namespace Business.Tests.Mocking
 
             mockContactRepository.Setup(repo => repo.ReadContactsForUser(userId)).Returns(contacts);
 
-            // Act
+            // Act: Uppdatera kontakten i systemet.
             contactService.UpdateContact(userId, contact);
 
-            // Assert
+            // Assert: Verifiera att WriteContacts-metoden anropades en gång.
             mockContactRepository.Verify(repo => repo.WriteContactsForUser(userId, It.IsAny<List<Contact>>()), Times.Once);
         }
 
         [Fact]
         public void DeleteContact_ShouldCallWriteContactsOnRepository()
         {
-            // Arrange
+            // Arrange: Mocka IContactRepository och förbered kontaktdata att ta bort.
             var mockContactRepository = new Mock<IContactRepository>();
             var contactService = new ContactService(mockContactRepository.Object);
 
@@ -94,17 +94,17 @@ namespace Business.Tests.Mocking
 
             mockContactRepository.Setup(repo => repo.ReadContactsForUser(userId)).Returns(contacts);
 
-            // Act
+            // Act: Ta bort kontakten från systemet.
             contactService.DeleteContact(userId, contactId);
 
-            // Assert
+            // Assert: Verifiera att WriteContacts-metoden anropades en gång.
             mockContactRepository.Verify(repo => repo.WriteContactsForUser(userId, It.IsAny<List<Contact>>()), Times.Once);
         }
 
         [Fact]
         public void AddFavorite_ShouldCallWriteFavoritesOnRepository()
         {
-            // Arrange
+            // Arrange: Mocka IContactRepository och förbered favoritdata.
             var mockContactRepository = new Mock<IContactRepository>();
             var contactService = new ContactService(mockContactRepository.Object);
 
@@ -113,17 +113,17 @@ namespace Business.Tests.Mocking
 
             mockContactRepository.Setup(repo => repo.ReadFavoritesForUser(userId)).Returns(new List<FavoriteContact>());
 
-            // Act
+            // Act: Lägg till favoritkontakten i systemet.
             contactService.AddFavorite(userId, favoriteContact);
 
-            // Assert
+            // Assert: Verifiera att WriteFavorites-metoden anropades en gång.
             mockContactRepository.Verify(repo => repo.WriteFavoritesForUser(userId, It.IsAny<List<FavoriteContact>>()), Times.Once);
         }
 
         [Fact]
         public void UpdateFavorite_ShouldCallWriteFavoritesOnRepository()
         {
-            // Arrange
+            // Arrange: Mocka IContactRepository och förbered favoritdata att uppdatera.
             var mockContactRepository = new Mock<IContactRepository>();
             var contactService = new ContactService(mockContactRepository.Object);
 
@@ -136,17 +136,17 @@ namespace Business.Tests.Mocking
 
             mockContactRepository.Setup(repo => repo.ReadFavoritesForUser(userId)).Returns(favorites);
 
-            // Act
+            // Act: Uppdatera favoritkontakten i systemet.
             contactService.UpdateFavorite(userId, favoriteContact);
 
-            // Assert
+            // Assert: Verifiera att WriteFavorites-metoden anropades en gång.
             mockContactRepository.Verify(repo => repo.WriteFavoritesForUser(userId, It.IsAny<List<FavoriteContact>>()), Times.Once);
         }
 
         [Fact]
         public void GetAllFavorites_ShouldReturnFavoritesFromRepository()
         {
-            // Arrange
+            // Arrange: Mocka IContactRepository och förbered favoritdata.
             var mockContactRepository = new Mock<IContactRepository>();
             var contactService = new ContactService(mockContactRepository.Object);
 
@@ -159,10 +159,10 @@ namespace Business.Tests.Mocking
 
             mockContactRepository.Setup(repo => repo.ReadFavoritesForUser(userId)).Returns(favorites);
 
-            // Act
+            // Act: Hämta alla favoritkontakter för användaren.
             var result = contactService.GetAllFavorites(userId);
 
-            // Assert
+            // Assert: Verifiera att favoritkontakterna returnerades korrekt och att metoden anropades en gång.
             Assert.Equal(favorites, result);
             mockContactRepository.Verify(repo => repo.ReadFavoritesForUser(userId), Times.Once);
         }
@@ -170,7 +170,7 @@ namespace Business.Tests.Mocking
         [Fact]
         public void RemoveFavorite_ShouldCallWriteFavoritesOnRepository()
         {
-            // Arrange
+            // Arrange: Mocka IContactRepository och förbered favoritdata att ta bort.
             var mockContactRepository = new Mock<IContactRepository>();
             var contactService = new ContactService(mockContactRepository.Object);
 
@@ -183,10 +183,10 @@ namespace Business.Tests.Mocking
 
             mockContactRepository.Setup(repo => repo.ReadFavoritesForUser(userId)).Returns(favorites);
 
-            // Act
+            // Act: Ta bort favoritkontakten från systemet.
             contactService.RemoveFavorite(userId, favoriteId);
 
-            // Assert
+            // Assert: Verifiera att WriteFavorites-metoden anropades en gång.
             mockContactRepository.Verify(repo => repo.WriteFavoritesForUser(userId, It.IsAny<List<FavoriteContact>>()), Times.Once);
         }
     }

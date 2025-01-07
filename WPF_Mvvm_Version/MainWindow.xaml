@@ -12,7 +12,10 @@
         AllowsTransparency="True"
         Background="Transparent"
         WindowStartupLocation="CenterScreen">
+
+    <!-- Resurser som används i fönstret -->
     <Window.Resources>
+        <!-- Drop shadow-effekt som används för UI-element -->
         <DropShadowEffect x:Key="DropShadow" 
                           BlurRadius="7" 
                           ShadowDepth="0" 
@@ -20,36 +23,42 @@
                           Color="#D3D3D3"/>
     </Window.Resources>
 
+    <!-- Huvudlayouten för fönstret -->
     <Grid Background="Transparent">
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="133*"/>
-            <ColumnDefinition Width="267*"/>
+            <!-- Definierar två kolumner för layouten -->
+            <ColumnDefinition Width="133*" />
+            <ColumnDefinition Width="267*" />
         </Grid.ColumnDefinitions>
+
+        <!-- Ytterligare en gräns som omsluter hela UI:t -->
         <Border Background="#1f1f1f" 
                 CornerRadius="20" 
                 BorderBrush="#2A2A2A" 
                 BorderThickness="1"
-                Effect="{StaticResource DropShadow}"
+                Effect="{StaticResource DropShadow}" 
                 Margin="5,5,5,5"
-                Padding="15" Grid.ColumnSpan="2">
+                Padding="15"
+                Grid.ColumnSpan="2">
 
             <Grid>
-                <!-- Header Section -->
-                <Border Background="#1f1f1f" Height="40" VerticalAlignment="Top" MouseDown="Header_MouseDown">
+                <!-- HEADER-SEKTION -->
+                <Border Background="#1f1f1f" 
+                        Height="40" 
+                        VerticalAlignment="Top" 
+                        MouseDown="Header_MouseDown">
                     <DockPanel>
-                        <!-- Left: Icon -->
+                        <!-- Vänster: Ikonen i headern -->
                         <Image Source="/Resources/top-logo.png"
-                                       Width="40"
-                                       Height="40"
-                                       VerticalAlignment="Center"
-                                       Margin="10,0,10,0">
-                        </Image>
-                            <!-- Blue overlay -->
-                            <Rectangle Fill="Blue" Opacity="0.5" />
+                               Width="40"
+                               Height="40"
+                               VerticalAlignment="Center"
+                               Margin="10,0,10,0" />
 
+                        <!-- Visuell overlay (kan tas bort om den inte behövs) -->
+                        <Rectangle Fill="Blue" Opacity="0.5" />
 
-
-                        <!-- Right: Close Button -->
+                        <!-- Höger: Stäng-knappen i headern -->
                         <Button Content="X" 
                                 Foreground="White" 
                                 Background="Transparent" 
@@ -60,13 +69,15 @@
                                 FontSize="18"
                                 Height="40"
                                 Click="CloseButton_Click"
-                                DockPanel.Dock="Right"/>
+                                DockPanel.Dock="Right" />
                     </DockPanel>
                 </Border>
 
-                <!-- Content Section -->
-                <Grid Margin="0,50,0,0" VerticalAlignment="Center" HorizontalAlignment="Center">
-                    <!-- Frame för navigation -->
+                <!-- INNEHÅLLSSEKTION -->
+                <Grid Margin="0,50,0,0" 
+                      VerticalAlignment="Center" 
+                      HorizontalAlignment="Center">
+                    <!-- Navigationsram för att ladda innehåll -->
                     <Frame Name="ContentFrame" NavigationUIVisibility="Hidden" />
                 </Grid>
             </Grid>
