@@ -7,22 +7,22 @@
 
     <Page.Resources>
         <converters:BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter" />
-       
-    </Page.Resources>
 
+    </Page.Resources>
     <Grid Background="#1f1f1f" Margin="0">
         <StackPanel>
             <StackPanel Orientation="Horizontal" HorizontalAlignment="Left" Margin="10">
                 <Button Content="+" 
-                        FontSize="35"
-                        Padding="5 -10 5 0"
-                        Margin="0,0,0,10" 
-                        Background="#273E51" 
-                        Foreground="White"
-                        BorderBrush="#2A2A2A"
-                        Command="{Binding AddContactCommand}"/>
+                         FontSize="35"
+                         Padding="5 -10 5 0"
+                         BorderBrush="Orange"
+                         BorderThickness="1"
+                         Margin="0,0,0,10" 
+                         Background="#2D4254" 
+                         Foreground="White"
+                         Command="{Binding AddContactCommand}"/>
                 <TextBlock Text="Contact Page" 
-                           Foreground="White" 
+                           Foreground="#4fb5f9" 
                            FontSize="24" 
                            FontWeight="Bold" 
                            VerticalAlignment="Center" 
@@ -36,7 +36,7 @@
                 <ItemsControl ItemsSource="{Binding Contacts}" Margin="0,10,0,0">
                     <ItemsControl.ItemTemplate>
                         <DataTemplate>
-                            <Border Background="#273E51" CornerRadius="10" Margin="0,5" Padding="10">
+                            <Border Background="#353739" CornerRadius="10" Margin="0,5" Padding="10">
                                 <StackPanel>
                                     <Grid>
                                         <Grid.ColumnDefinitions>
@@ -55,8 +55,8 @@
                                             <Button Content="Edit"
                                                     Width="70"
                                                     Height="30"
-                                                    Background="#1F1F1F"
-                                                    Foreground="White"
+                                                    Style="{StaticResource OrangeButtonStyle}"
+                                                    FontSize="16"
                                                     Margin="0,0,10,0"
                                                     BorderBrush="#273E51"
                                                     Command="{Binding DataContext.EditContactCommand, RelativeSource={RelativeSource AncestorType=ItemsControl}}"
@@ -64,8 +64,9 @@
                                             <Button Content="Delete"
                                                     Width="70"
                                                     Height="30"
-                                                    Background="#1F1F1F"
-                                                    Foreground="White"
+                                                      FontSize="16"
+                                                    Style="{StaticResource OrangeButtonStyle}"
+                                                    Foreground="#880101"
                                                     BorderBrush="#FF5555"
                                                     Command="{Binding DataContext.DeleteContactCommand, RelativeSource={RelativeSource AncestorType=ItemsControl}}"
                                                     CommandParameter="{Binding}" />
@@ -82,8 +83,8 @@
                                     <Button Content="{Binding ToggleButtonText}"
         Width="100"
         Height="30"
-        Background="Transparent"
-        Foreground="White"
+                                            FontSize="14"
+        Style="{StaticResource OrangeButtonStyle}"
         BorderBrush="#273E51"
         Margin="0,10,0,0"
         Command="{Binding DataContext.ToggleMoreInfoCommand, RelativeSource={RelativeSource AncestorType=ItemsControl}}"

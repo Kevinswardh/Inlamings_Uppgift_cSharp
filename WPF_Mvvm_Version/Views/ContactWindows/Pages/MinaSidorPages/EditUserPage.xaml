@@ -5,11 +5,11 @@
       Title="EditUserPage">
 
     <Grid Background="#1F1F1F">
-        <Border Background="#273E51" CornerRadius="20" Margin="20" Padding="20">
+        <Border Background="#353739" CornerRadius="20" Margin="20" Padding="20">
             <StackPanel>
                 <!-- Header -->
                 <TextBlock Text="Edit User Information" 
-                           Foreground="White" 
+                           Foreground=" #4fb5f9" 
                            FontSize="26" 
                            FontWeight="Bold" 
                            HorizontalAlignment="Center" 

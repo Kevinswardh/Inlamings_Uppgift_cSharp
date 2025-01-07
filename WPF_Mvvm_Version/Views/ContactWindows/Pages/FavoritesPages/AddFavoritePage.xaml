@@ -3,11 +3,11 @@
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
       Title="AddFavoritePage">
     <Grid Background="#1f1f1f">
-        <Border Background="#273E51" CornerRadius="20" Margin="20" Padding="10">
+        <Border Background="#353739" CornerRadius="20" Margin="20" Padding="10">
             <StackPanel Margin="20">
                 <!-- Header -->
                 <TextBlock Text="Add Favorite"
-                           Foreground="White"
+                           Foreground=" #4fb5f9"
                            FontSize="26"
                            FontWeight="Bold"
                            HorizontalAlignment="Center"

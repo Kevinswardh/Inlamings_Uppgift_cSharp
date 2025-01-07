@@ -150,29 +150,6 @@
   {
     "Role": "Default",
     "UserType": "Standard User",
-    "Id": "8e0635c3-5b59-467d-ba83-e19701424f70",
-    "Name": "lele",
-    "Lastname": "lele",
-    "Fullname": "lele lele",
-    "Email": "lele@lele.lele",
-    "Password": "jZae727K08KaOmKSgOaGzww/XVqGr/PKEgIMkjrcbJI=",
-    "Contacts": [
-      {
-        "Id": "361edb0d-fb25-4ebd-b121-4792952563fc",
-        "Name": "kevin",
-        "Lastname": "swärdh",
-        "Fullname": "kevin swärdh",
-        "PhoneNumber": "0733764337",
-        "Address": "axgatan 47",
-        "Email": "kevinswardh@gmail.com",
-        "Notes": "Pelle"
-      }
-    ],
-    "Favorites": []
-  },
-  {
-    "Role": "Default",
-    "UserType": "Standard User",
     "Id": "4ad718d5-cbc6-4827-a08f-8386d30b4730",
     "Name": "momo",
     "Lastname": "momo",
@@ -241,5 +218,64 @@
     "Password": "jZae727K08KaOmKSgOaGzww/XVqGr/PKEgIMkjrcbJI=",
     "Contacts": [],
     "Favorites": []
+  },
+  {
+    "Role": "Admin",
+    "UserType": "Administrator",
+    "Id": "c7bea123-4c23-44bf-bf2e-245ec682df00",
+    "Name": "oke",
+    "Lastname": "oke",
+    "Fullname": "oke oke",
+    "Email": "oke@oke.oke",
+    "Password": "jZae727K08KaOmKSgOaGzww/XVqGr/PKEgIMkjrcbJI=",
+    "Contacts": [],
+    "Favorites": []
+  },
+  {
+    "Role": "Admin",
+    "UserType": "Administrator",
+    "Id": "8016532b-b60e-4d24-b769-c7862eab10db",
+    "Name": "jg",
+    "Lastname": "jg",
+    "Fullname": "jg jg",
+    "Email": "jg@jg.jg",
+    "Password": "jZae727K08KaOmKSgOaGzww/XVqGr/PKEgIMkjrcbJI=",
+    "Contacts": [],
+    "Favorites": []
+  },
+  {
+    "Role": "Default",
+    "UserType": "Standard User",
+    "Id": "8e0635c3-5b59-467d-ba83-e19701424f70",
+    "Name": "lele",
+    "Lastname": "lele",
+    "Fullname": "lele lele",
+    "Email": "lele@lele.lele",
+    "Password": "jZae727K08KaOmKSgOaGzww/XVqGr/PKEgIMkjrcbJI=",
+    "Contacts": [
+      {
+        "Id": "361edb0d-fb25-4ebd-b121-4792952563fc",
+        "Name": "kevin",
+        "Lastname": "swärdh",
+        "Fullname": "kevin swärdh",
+        "PhoneNumber": "0733764337",
+        "Address": "axgatan 47",
+        "Email": "kevinswardh@gmail.com",
+        "Notes": "Pelle"
+      }
+    ],
+    "Favorites": [
+      {
+        "Favorite": "Favorite",
+        "Id": "f4a4dd05-3498-498a-b71a-e881035c0dc4",
+        "Name": "pelle",
+        "Lastname": "plutt",
+        "Fullname": "pelle plutt",
+        "PhoneNumber": "076645362",
+        "Address": "meme gatan 4",
+        "Email": "lolo@lolo.lolo",
+        "Notes": "Rumpenisse"
+      }
+    ]
   }
 ]

@@ -5,11 +5,11 @@
       Title="MinaSidorPage">
 
     <Grid Background="#1F1F1F">
-        <Border Background="#273E51" CornerRadius="20" Margin="20" Padding="10">
+        <Border Background="#353739" CornerRadius="20" Margin="20" Padding="10">
             <StackPanel Margin="20">
                 <!-- Header -->
                 <TextBlock Text="Mina Sidor" 
-                           Foreground="White" 
+                           Foreground="#4fb5f9" 
                            FontSize="26" 
                            FontWeight="Bold" 
                            HorizontalAlignment="Center" 
