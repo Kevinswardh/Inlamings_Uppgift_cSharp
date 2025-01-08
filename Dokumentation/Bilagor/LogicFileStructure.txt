@@ -1,0 +1,28 @@
+﻿Logic/
+│
+├── 1-Services/
+│   ├── ContactService/
+│   │   ├── Interface/
+│   │   │   └── IContactService.cs
+│   │   └── ContactService.cs
+│   │
+│   ├── UserService/
+│       ├── Interface/
+│       │   └── IUserService.cs
+│       └── UserService.cs
+│
+├── 2-Repositories/
+    ├── ContactRepository/
+    │   ├── Interface/
+    │   │   └── IContactRepository.cs
+    │   └── ContactRepository.cs
+    │
+    ├── JsonRepository/
+    │   ├── Interface/
+    │   │   └── IJsonRepository.cs
+    │   └── JsonRepository.cs
+    │
+    └── UserRepository/
+        ├── Interface/
+        │   └── IUserRepository.cs
+        └── UserRepository.cs

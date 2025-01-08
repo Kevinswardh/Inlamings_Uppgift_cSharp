@@ -13,7 +13,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Business.Tests.Mocking", "B
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WPF_Version", "WPF_Version\WPF_Version.csproj", "{3CF82F57-24C4-4D66-8782-61B0EF318926}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WPF_Mvvm_Version", "WPF_Mvvm_Version\WPF_Mvvm_Version.csproj", "{81230043-74F2-4790-864C-19911FB19193}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WPF_Mvvm_Version", "WPF_Mvvm_Version\WPF_Mvvm_Version.csproj", "{81230043-74F2-4790-864C-19911FB19193}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
