@@ -45,3 +45,8 @@ Projektet inkluderar enhetstester och integrationstester som täcker:
 - Utveckla applikationen i .NET MAUI för stöd på flera plattformar.
 - Förbättra UI-designen med responsiv layout.
 - Utöka applikationen med fler avancerade funktioner som realtidsuppdateringar.
+
+---
+
+## <span style="color:red">Notis om MAUI-versionerna</span>
+De nuvarande MAUI-versionerna är under utveckling och är inte fullständiga. Funktionalitet och design kan saknas eller vara ofullständig i dessa versioner. Arbetet med MAUI är en del av framtida utvecklingsplaner för projektet.
