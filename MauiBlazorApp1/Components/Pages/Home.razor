@@ -1,0 +1,73 @@
+﻿@page "/"
+
+<div class="home-container">
+    <!-- Frontpage Image -->
+    <img src="frontpage.png" alt="Frontpage" class="frontpage-image" />
+
+    <!-- Buttons -->
+    <div class="button-group">
+        <button class="orange-button" @onclick="Login">Login</button>
+        <button class="orange-button" @onclick="Register">Register</button>
+    </div>
+</div>
+
+<style>
+    .home-container {
+        background-color: #1f1f1f;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        padding: 20px;
+    }
+
+    .frontpage-image {
+        width: 170px;
+        height: 170px;
+        margin: 10px 10px 50px;
+    }
+
+    .button-group {
+        display: flex;
+        gap: 30px;
+    }
+
+    .orange-button {
+        background-color: orange;
+        color: white;
+        border: none;
+        border-radius: 5px;
+        width: 100px;
+        height: 40px;
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+    }
+
+        .orange-button:hover {
+            background-color: darkorange; /* För hover-effekt på Windows */
+        }
+
+        .orange-button:active {
+            background-color: orangered; /* För aktivt tryck på pekskärmar */
+        }
+
+        .orange-button:focus {
+            outline: 2px solid lightblue; /* För att indikera fokus på touch eller tangentbord */
+        }
+
+</style>
+
+@code {
+    private void Login()
+    {
+        // Login-logik
+    }
+
+    [Inject] private NavigationManager NavigationManager { get; set; }
+
+    private void Register()
+    {
+        // Navigera till RegisterPage
+        NavigationManager.NavigateTo("/Register");
+    }
+}

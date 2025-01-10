@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="MauiXamlApp1.Views.AuthenticationPages.RegisterPage"
+             BackgroundColor="#1f1f1f">
+
+    <ScrollView Margin="0, 30, 0, 0">
+        <VerticalStackLayout Padding="30" Spacing="20" HorizontalOptions="Center" WidthRequest="400">
+            <!-- Titel -->
+            <Label Text="Register" FontSize="28" TextColor="#4fb5f9" HorizontalOptions="Center" />
+
+            <!-- Name -->
+            <VerticalStackLayout>
+                <Label Text="Name" FontSize="16" TextColor="White" />
+                <Entry Placeholder="Enter your name" BackgroundColor="White" TextColor="Black" />
+            </VerticalStackLayout>
+
+            <!-- Lastname -->
+            <VerticalStackLayout>
+                <Label Text="Lastname" FontSize="16" TextColor="White" />
+                <Entry Placeholder="Enter your lastname" BackgroundColor="White" TextColor="Black" />
+            </VerticalStackLayout>
+
+            <!-- Email -->
+            <VerticalStackLayout>
+                <Label Text="Email" FontSize="16" TextColor="White" />
+                <Entry Placeholder="Enter your email" Keyboard="Email" BackgroundColor="White" TextColor="Black" />
+            </VerticalStackLayout>
+
+            <!-- Password -->
+            <VerticalStackLayout>
+                <Label Text="Password" FontSize="16" TextColor="White" />
+                <Entry Placeholder="Enter your password" IsPassword="True" BackgroundColor="White" TextColor="Black" />
+            </VerticalStackLayout>
+
+            <!-- Role -->
+            <VerticalStackLayout>
+                <Label Text="Role" FontSize="16" TextColor="White"/>
+                <Picker Title="" BackgroundColor="White" TextColor="Black" Margin="0, 0, 0, 40">
+                    <Picker.ItemsSource>
+                        <x:Array Type="{x:Type x:String}">
+                            <x:String>Admin</x:String>
+                            <x:String>Default</x:String>
+                        </x:Array>
+                    </Picker.ItemsSource>
+                </Picker>
+            </VerticalStackLayout>
+
+            <!-- Buttons -->
+            <HorizontalStackLayout Spacing="20" HorizontalOptions="Center">
+                <Button Text="Create" BackgroundColor="#FFA500" TextColor="White" WidthRequest="120" />
+                <Button Text="Back" BackgroundColor="#2A2A2A" TextColor="White" WidthRequest="120" Clicked="OnBackButtonClicked" />
+            </HorizontalStackLayout>
+        </VerticalStackLayout>
+    </ScrollView>
+</ContentPage>

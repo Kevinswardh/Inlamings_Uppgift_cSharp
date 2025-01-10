@@ -1,0 +1,36 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="MauiXamlApp1.Views.MainPage"
+             BackgroundColor="#1f1f1f"
+             Title="">
+
+    <!-- Huvudlayout för hela fönstret -->
+    <Grid>
+        <!-- Innehållssektion -->
+        <VerticalStackLayout Spacing="20" VerticalOptions="Center" HorizontalOptions="Center">
+            <!-- Bild -->
+            <Image Source="frontpage.png"
+                   WidthRequest="170"
+                   HeightRequest="170"
+                   Margin="10,10,10,50"
+                   HorizontalOptions="Center" />
+
+            <!-- Knappar -->
+            <HorizontalStackLayout Spacing="30" HorizontalOptions="Center">
+                <Button Text="Login"
+                        BackgroundColor="Orange"
+                        TextColor="White"
+                        WidthRequest="100"
+                        HeightRequest="40" />
+
+                <Button Text="Register"
+                        BackgroundColor="Orange"
+                        TextColor="White"
+                        WidthRequest="100"
+                        HeightRequest="40"
+                        Clicked="NavigateToRegister" />
+            </HorizontalStackLayout>
+        </VerticalStackLayout>
+    </Grid>
+</ContentPage>

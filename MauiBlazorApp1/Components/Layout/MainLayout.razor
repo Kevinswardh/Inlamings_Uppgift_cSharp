@@ -1,0 +1,26 @@
+﻿@inherits LayoutComponentBase
+
+<div class="main-container">
+    <!-- Innehåll -->
+    <div class="content">
+        @Body
+    </div>
+</div>
+
+<style>
+    .main-container {
+        background-color: #1f1f1f;
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+        height: 100vh;
+        padding: 0;
+    }
+
+    .content {
+        flex: 1;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+</style>

@@ -1,0 +1,174 @@
+﻿@page "/Register"
+
+<div class="register-container">
+<h3 class="register-title">Register</h3>
+    <!-- Name -->
+    <div class="form-group">
+        <label for="name">Name</label>
+        <input id="name" type="text" @bind="Name" class="form-control" />
+        @if (!string.IsNullOrEmpty(NameErrorText))
+        {
+            <span class="error-text">@NameErrorText</span>
+        }
+    </div>
+
+    <!-- Lastname -->
+    <div class="form-group">
+        <label for="lastname">Lastname</label>
+        <input id="lastname" type="text" @bind="Lastname" class="form-control" />
+        @if (!string.IsNullOrEmpty(LastnameErrorText))
+        {
+            <span class="error-text">@LastnameErrorText</span>
+        }
+    </div>
+
+    <!-- Email -->
+    <div class="form-group">
+        <label for="email">Email</label>
+        <input id="email" type="email" @bind="Email" class="form-control" />
+        @if (!string.IsNullOrEmpty(EmailErrorText))
+        {
+            <span class="error-text">@EmailErrorText</span>
+        }
+    </div>
+
+    <!-- Password -->
+    <div class="form-group">
+        <label for="password">Password</label>
+        <input id="password" type="password" @bind="Password" class="form-control" />
+        @if (!string.IsNullOrEmpty(PasswordErrorText))
+        {
+            <span class="error-text">@PasswordErrorText</span>
+        }
+    </div>
+
+    <!-- Role -->
+    <div class="form-group">
+        <label for="role">Role</label>
+        <select id="role" @bind="Role" class="form-control">
+            <option value="" disabled>Select a role</option>
+            <option>Admin</option>
+            <option>Default</option>
+        </select>
+        @if (!string.IsNullOrEmpty(RoleErrorText))
+        {
+            <span class="error-text">@RoleErrorText</span>
+        }
+    </div>
+
+    <!-- Buttons -->
+    <div class="button-group">
+        <button class="btn orange-button" @onclick="Create">Create</button>
+        <button class="btn orange-button" @onclick="Back">Back</button>
+    </div>
+</div>
+<style>
+    .register-title{
+        color: #4fb5f9;
+    }
+    .register-container {
+        background-color: #1f1f1f;
+        color: white;
+        padding: 20px;
+        width: 350px;
+        margin: 0 auto;
+        border-radius: 10px;
+        margin-bottom: 40px;
+    }
+
+    .form-group {
+        margin-bottom: 15px;
+    }
+
+    .register-container .button-group {
+        margin-top: 60px;
+    }
+
+    label {
+        font-size: 16px;
+        margin-bottom: 5px;
+        display: block;
+    }
+
+    input, select {
+        width: 100%;
+        padding: 5px;
+        font-size: 14px;
+        border-radius: 5px;
+        border: 1px solid #ccc;
+    }
+
+    .error-text {
+        color: red;
+        font-size: 12px;
+        margin-top: 5px;
+        display: block;
+    }
+
+    .button-group {
+        display: flex;
+        justify-content: space-between;
+        margin-top: 40px;
+    }
+
+    .btn {
+        width: 100px;
+        padding: 10px;
+        border-radius: 5px;
+        border: none;
+        cursor: pointer;
+    }
+
+    .orange-button {
+        background-color: orange;
+        color: white;
+        border: none;
+        border-radius: 5px;
+        width: 100px;
+        height: 40px;
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+    }
+
+        .orange-button:hover {
+            background-color: darkorange; /* För hover-effekt på Windows */
+        }
+
+        .orange-button:active {
+            background-color: orangered; /* För aktivt tryck på pekskärmar */
+        }
+
+        .orange-button:focus {
+            outline: 2px solid lightblue; /* För att indikera fokus på touch eller tangentbord */
+        }
+</style>
+@code {
+    private string Name { get; set; }
+    private string NameErrorText { get; set; }
+
+    private string Lastname { get; set; }
+    private string LastnameErrorText { get; set; }
+
+    private string Email { get; set; }
+    private string EmailErrorText { get; set; }
+
+    private string Password { get; set; }
+    private string PasswordErrorText { get; set; }
+
+    private string Role { get; set; }
+    private string RoleErrorText { get; set; }
+
+    private void Create()
+    {
+        // Validera och skapa användaren
+    }
+
+    [Inject] private NavigationManager NavigationManager { get; set; }
+
+    private void Back()
+    {
+        // Navigera tillbaka till Home
+        NavigationManager.NavigateTo("/");
+    }
+
+}
